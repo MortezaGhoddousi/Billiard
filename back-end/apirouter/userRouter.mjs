@@ -1,28 +1,22 @@
-import express from "express"
-import bodyParser from "body-parser"
+import express from 'express';
+const userRouter = express.Router();
+import {adduser, deleteuser } from '../db.mjs'
 
+userRouter.post('/' , (res, req )=> {
+  adduser(req.body)
+  .then((result)=> {res.status(200).send({status : 'data addded database'})})
+  .catch(res.status(500).send({error : err}))
+})
 
-var app = express.Router();
+userRouter.delete("/:id" , (err , rew)=> {
+  deleteuser(id)
+  .then((result)=> {
+    if(result)
+    res.status(200).send({status : 'data delete database'})
+  else {
+    res.status(404).send({status : 'id not found'})
+  }
+  })
+})
 
-  userRouter.post('/' , (res , req) => {
-      userRouter(req.body)
-    .then((result) => {
-        res.status(200).send({STATUS : 'user add SUCCESSFULLY"'})
-    })
-    }).catch((err) => {
-        err.sttus(500).send({error :err})      
-    });   
-
-    userRouter.delete("/:id", (req, res) => {
-      userRouter(req.params.id)
-          .then((result) => {
-            if (result) {
-              res.status(200).send({ STATUS: "data delete successfully " });
-            } else {
-              res.status(404).send({ STATUS: "id not found" });
-            }
-          })
-          .catch((err) => res.send(500).send({ ERROR: err }));
-      });
-
-      export default userRouter ;
+export default userRouter ;

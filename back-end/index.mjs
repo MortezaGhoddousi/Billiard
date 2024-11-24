@@ -1,23 +1,22 @@
 import express from 'express';
-import { Router } from "express";
 import bodyParser from 'body-parser';
 import userRouter from './apirouter/userRouter.mjs';
-import sessoinrouter from './apirouter/sessoinrouter.mjs';
+import customerRouter from './apirouter/custrouter.mjs';
+import paymentsrouter from './apirouter/paymentrouter.mjs';
+import reservationrouter from './apirouter/reservrouter.mjs';
+import tablerouter from './apirouter/tablerouter.mjs';
+import TournamentsRouter from './apirouter/tournamentrouter.mjs';
+
+var app= express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
-var app= express();
-
-app.use("/api/user", userRouter);
-
-app.use('/api/sessoin', sessoinrouter);
-
-
-
-
-
-
-
+app.use('/api/admin', userRouter)
+app.use('/api/customer', customerRouter)
+app.use('/api/payments', paymentsrouter)
+app.use('/api/reserv', reservationrouter)
+app.use('/api/table', tablerouter)
+app.use('/api/tour', TournamentsRouter)
 
 const port = 8000 ;
 app.listen(port , () => {
