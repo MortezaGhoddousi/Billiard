@@ -1,0 +1,25 @@
+.carousel {
+    z-index: 20;
+}
+.carousel-indicators {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.carousel-indicators li {
+    padding: 5px;
+    border-radius: 0;
+    border: none;
+    background-color: whitesmoke;
+}
+
+.carousel-indicators .active {
+    background-color: #F7BB26;
+}
+
+.carousel .glyphicon {
+    display: none;
+}
+
