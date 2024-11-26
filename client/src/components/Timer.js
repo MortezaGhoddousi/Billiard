@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import '../css/Timer.css';
+import "../css/Timer.css";
 
 const Timer = ({ price }) => {
   const [isActive, setIsActive] = useState(false);
-  const [timeSpent, setTimeSpent] = useState(0); 
+  const [timeSpent, setTimeSpent] = useState(0);
   const [Cost, setCost] = useState(0);
   const [totalTime, setTotalTime] = useState(0);
   const [time, setTime] = useState({
@@ -18,10 +18,10 @@ const Timer = ({ price }) => {
 
     if (isActive) {
       interval = setInterval(() => {
-        setTimeSpent((prevTime) => prevTime + 1); 
+        setTimeSpent((prevTime) => prevTime + 1);
         setTotalTime((prevTotal) => prevTotal + 1);
         setTime({
-          hour: Math.floor((timeSpent + 1) / 3600), 
+          hour: Math.floor((timeSpent + 1) / 3600),
           minutes: Math.floor(((timeSpent + 1) % 3600) / 60),
           seconds: (timeSpent + 1) % 60,
         });
@@ -30,38 +30,43 @@ const Timer = ({ price }) => {
       clearInterval(interval);
     }
 
-    return () => clearInterval(interval); 
+    return () => clearInterval(interval);
   }, [isActive, timeSpent]);
 
-  const handleStartStopClick = () => {
+  const handleStartStopClick = (e) => {
+    var overlayDiv = e.target.parentNode.parentNode.previousSibling.lastChild;
     if (isActive) {
+      overlayDiv.style.backgroundColor = "rgba(0, 0, 0, 0.6)";
       const cost = Math.floor(timeSpent * price);
       setCost((prevCost) => prevCost + cost);
+    } else {
+      overlayDiv.style.backgroundColor = "rgba(0, 0, 0, 0)";
     }
-    
+
     setIsActive(!isActive);
-    
   };
-  
+
   const handleThis = () => {
-    const currentCost = Math.floor(timeSpent * price); 
-    setPrices([...prices, currentCost]); 
-    setTimeSpent(0); 
-    setTime({ hour: 0, minutes: 0, seconds: 0 }); 
+    const currentCost = Math.floor(timeSpent * price);
+    setPrices([...prices, currentCost]);
+    setTimeSpent(0);
+    setTime({ hour: 0, minutes: 0, seconds: 0 });
 
     const sum = prices.reduce(
-      (accumulator, currentValue) => accumulator + currentValue,cost );
-      setCost(sum);
+      (accumulator, currentValue) => accumulator + currentValue,
+      cost
+    );
+    setCost(sum);
   };
 
   const handleReset = () => {
     setIsActive(false);
-    setTimeSpent(0); 
-    setTotalTime(0); 
-    setCost(0); 
-    setPrices([]); 
+    setTimeSpent(0);
+    setTotalTime(0);
+    setCost(0);
+    setPrices([]);
     setTime({ hour: 0, minutes: 0, seconds: 0 });
-  }
+  };
 
   const cost = Math.floor(timeSpent * price);
 
@@ -77,7 +82,11 @@ const Timer = ({ price }) => {
 
   return (
     <div className="timer">
-      <p className="time"> {formatTime(totalSeconds)} : {formatTime(totalMinutes)} : {formatTime(totalHours)}</p>
+      <p className="time">
+        {" "}
+        {formatTime(totalSeconds)} : {formatTime(totalMinutes)} :{" "}
+        {formatTime(totalHours)}
+      </p>
       {/* <p className="time">
          {formatTime(time.seconds)} : {formatTime(time.minutes)} : {formatTime(time.hour)}
       </p> */}
