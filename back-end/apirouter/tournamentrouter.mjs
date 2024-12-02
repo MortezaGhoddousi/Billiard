@@ -4,7 +4,7 @@ import {addtour,
     updatecomp,
     gettour} from "../db.mjs"
     const TournamentsRouter = express.Router();
-    // getphone
+    // 
 TournamentsRouter.get("/:id", (req, res) => {
     gettour(req.params.id)
       .then((result) => {
@@ -17,7 +17,7 @@ TournamentsRouter.get("/:id", (req, res) => {
       .catch((err) => res.status(500).send({ ERROR: err }));
   });
   
-  // addphone
+  // 
   TournamentsRouter.post("/", (req, res) => {
     addtour(req.body)
       .then((result) => {
@@ -26,7 +26,7 @@ TournamentsRouter.get("/:id", (req, res) => {
       .catch((err) => res.status(500).send({ ERROR: err }));
   });
   
-  // deletephone
+  // 
   TournamentsRouter.delete("/:id", (req, res) => {
     deletetour(req.params.id)
       .then((result) => {
@@ -39,7 +39,7 @@ TournamentsRouter.get("/:id", (req, res) => {
       .catch((err) => res.status(500).send({ ERROR: err }));
   });
   
-  // updatePhone
+  // 
   TournamentsRouter.put("/:id", (req, res) => {
     updatecomp(req.params.id, req.body.role)
       .then((result) => {

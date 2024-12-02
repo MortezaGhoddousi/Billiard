@@ -342,6 +342,58 @@ function gettable(id) {
     });
   });
 }
+function startTimer(tableId) {
+  return new Promise((resolve, reject) => {
+    const startTime = Date.now(); // زمان شروع تایمر
+
+    const query = "INSERT INTO sessions (table_id, start_time, elapsed_time) VALUES (?, ?, 0)";
+    db.run(query, [tableId, startTime], function (err) {
+      if (err) {
+        reject("Failed to start timer.");
+      }
+      resolve({ sessionId: this.lastID, startTime });
+    });
+  });
+}
+
+function stopTimer(sessionId, rate) {
+  return new Promise((resolve, reject) => {
+    const endTime = Date.now(); // زمان پایان تایمر
+
+    const query = `
+      UPDATE sessions
+      SET end_time = ?, elapsed_time = (end_time - start_time) / 1000,
+          cost = (elapsed_time / 3600) * ?
+      WHERE id = ?
+    `;
+    db.run(query, [endTime, rate, sessionId], (err) => {
+      if (err) {
+        reject("Failed to stop timer.");
+      }
+      resolve({ message: "Timer stopped and cost calculated." });
+    });
+  });
+}
+function getTimerStatus(sessionId) {
+  return new Promise((resolve, reject) => {
+    const query = "SELECT * FROM sessions WHERE id = ? AND end_time IS NULL";
+    db.get(query, [sessionId], (err, row) => {
+      if (err) {
+        reject("Failed to fetch timer status.");
+      }
+      if (!row) {
+        resolve({ active: false });
+      } else {
+        const currentTime = Date.now();
+        const elapsedTime = (currentTime - row.start_time) / 1000; // زمان سپری‌شده به ثانیه
+        resolve({ active: true, elapsedTime });
+      }
+    });
+  });
+}
+
+
+
 export  {
 getall,
 updatetable,
@@ -361,5 +413,9 @@ updatecomp,
 gettour,
 addpayments,
 deletepayments,
-getpayments
+getpayments,
+getTimerStatus,
+stopTimer,
+startTimer
+
 };
