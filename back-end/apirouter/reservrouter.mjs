@@ -1,10 +1,10 @@
 import express from 'express' ;
 const reservationrouter = express.Router();
-import {reserveTable,
+import {getAllReserv,
         deletereserv,
-        updateReservation} from '../db.mjs';
+        updateReservation, addreserv} from '../db.mjs';
 reservationrouter.get("/checkall", (req, res) => {
-reserveTable()
+  getAllReserv()
     .then((results) => {
     res.status(200).send(results);
         })
@@ -22,7 +22,7 @@ reservationrouter.delete("/:id", (req, res) => {
       .catch((err) => res.status(500).send({ ERROR: err }));
   });
   
-  // updatePhone
+  // updatereserv
   reservationrouter.put("/:id", (req, res) => {
     updateReservation(req.params.id, req.body.role)
       .then((result) => {
@@ -34,4 +34,12 @@ reservationrouter.delete("/:id", (req, res) => {
       })
       .catch((err) => res.status(500).send({ ERROR: err }));
   });
+  reservationrouter.post("/", (req, res) => {
+    addreserv()
+        .then((results) => {
+        res.status(200).send(results);
+            })
+            console.log('data errror')
+        .catch((err) => res.status(500).send({ ERROR: err }))
+    });
   export default reservationrouter ;

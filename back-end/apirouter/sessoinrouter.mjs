@@ -1,52 +1,28 @@
 import express from 'express';
-import bodyParser from 'body-parser';
 
-const sessoinrouter = express.Router();
-import {
-getTimerStatus,
-stopTimer,
-startTimer
-} from '../db.mjs';
-sessoinrouter.post("/start-timer", (req, res) => {
+import { startTimer, stopTimer, getTimerStatus } from '../db.mjs';
+const sessoinrouter= express.Router();
+sessoinrouter.post('/start', (req, res)=> {
   const { tableId } = req.body;
-
   startTimer(tableId)
-    .then((result) => {
-      res.status(200).json({ message: "Timer started.", sessionId: result.sessionId });
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err });
-    });
+    .then((result) => res.status(201).json({ message: "Timer started.", ...result }))
+    .catch((err) => res.status(500).json({ error: err.message }));
 });
-
-sessoinrouter.post("/stop-timer", (req, res) => {
+sessoinrouter.post('/stop', (res, req)=> {
   const { sessionId, rate } = req.body;
-
   stopTimer(sessionId, rate)
-    .then((result) => {
-      res.status(200).json({ message: result.message });
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err });
-    });
+    .then((result) => res.status(200).json({ message: "Timer stopped.", ...result }))
+    .catch((err) => res.status(500).json({ error: err.message }));
 });
-
-sessoinrouter.get("/timer-status/:sessionId", (req, res) => {
+sessoinrouter.get("/status/:sessionId", (req, res)=> {
   const { sessionId } = req.params;
-
   getTimerStatus(sessionId)
-    .then((status) => {
-      if (status.active) {
-        res.status(200).json({
-          active: true,
-          elapsedTime: status.elapsedTime,
-        });
-      } else {
-        res.status(200).json({ active: false });
-      }
+    .then((result) => {
+      if (result) res.status(200).json(result);
+      else res.status(404).json({ message: "Session not found." });
     })
-    .catch((err) => {
-      res.status(500).json({ error: err });
-    });
+    .catch((err) => res.status(500).json({ error: err.message }));
 });
+
 export default sessoinrouter ;
+

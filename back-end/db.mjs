@@ -1,4 +1,5 @@
 
+
 import sqlite from "sqlite3";
 
 var db = new sqlite.Database("./biliards.db", function (err) {
@@ -7,17 +8,20 @@ var db = new sqlite.Database("./biliards.db", function (err) {
 });
 
 // details all table user 
+//این قسمت مخصوص جدول ادمین 
 
+//اضافه کردن ادمین
  function adduser(data) {
   return new Promise ((resolve , reject) => {
     var query = 
-    "INSERT INTO user (id, username, password) VALUES (?, ? , ?)";
-    db.run(query , [data.id, data.username, data.password ] , (err)=> {
+    "INSERT INTO user (id, username, password, phone, name) VALUES (?, ? , ?, ?, ?)";
+    db.run(query , [data.id, data.username, data.password, data.name, data.phone ] , (err)=> {
       if(err) reject(err);
      resolve(true); 
     })
   })
 }
+//پاک کردن ادمین
 function deleteuser(id) {
   return new Promise((resolve, reject) => {
     var query = "DELETE FROM user WHERE id = ?";
@@ -30,23 +34,19 @@ function deleteuser(id) {
   });
 }
   // details all table REserv
+  //این قسمت برای جدول رزرو میز ها است
+//اضافه کردن رزرو
+  function addreserv(data) {
+    return new Promise((resolve, reject)=> {
+      var query = 'INSERT INTO reservations (id, user-id, , total-price, date ) VALUES (?, ?, ?, ?, ?)';
+      db.run(query, [data.id, data.table-id, data.total-Price, data.deta, data.time], (err)=> {
+        if(err) reject(err)
+          resolve(true);
+      })
+    })
+  }
 
-  function reserveTable(id, userId, tableId, startTime, endTime, pricePerHour) {
-    const durationInSeconds = (new Date(endTime) - new Date(startTime)) / 1000;
-    const totalPrice = (pricePerHour / 3600) * durationInSeconds;
-
-    const query = `
-        INSERT INTO Reservations ( id, user_id, table_id, start_time, end_time, total_price) 
-        VALUES (?, ?, ?, ?, ?);
-    `;
-    db.run(query, [id. userId, tableId, startTime, endTime, totalPrice], function (err) {
-        if (err) {
-            console.error(err.message);
-        } else {
-            console.log('Reservations is SUCCESSFULLY ');
-        }
-    });
-}
+//پاک کردن رزرو
 function deletereserv(id) {
   return new Promise((resolve, reject) => {
     var query = "SELECT * FROM Reservations WHERE id=?";
@@ -61,45 +61,35 @@ function deletereserv(id) {
     });
   });
 }
-function updateReservation(reservationId, newStartTime, newEndTime, callback) {
-  const queryGetPrice = `
-      SELECT Tables.pricePerHour 
-      FROM Reservations
-      JOIN Tables ON Reservations.tableId = Tables.id
-      WHERE Reservations.id = ?;
+//اپدیت کردن رزرو
+function updateReservation(data) {
+  return new Promise((resolve, reject)=> {
+    const query = `
+    UPDATE reservations
+    SET start_time = ?, end_time = ?, cost = ?
+    WHERE id = ?;
   `;
-    // update reserv
-  db.get(queryGetPrice, [reservationId], (err, row) => {
-      if (err) {
-          res.status(500).send({err})
-          callback(false);
-          return;
+  db.run(query, [data.start_time, data.end_time, data.id, data.cost],
+    (err)=> {
+      if(err) {
+        reject(err)
       }
-
-      const pricePerHour = row.price_per_hour;
-
-            
-      const durationInSeconds = (new Date(newEndTime) - new Date(newStartTime)) / 1000;
-      const totalPrice = (pricePerHour / 3600) * durationInSeconds;
-
-      const queryUpdate = `
-          UPDATE Reservations
-          SET 
-              startTime = ?, 
-              endTime = ?, 
-              totalPrice = ?
-          WHERE id = ?;
-      `;
-      db.run(queryUpdate, [newStartTime, newEndTime, totalPrice, reservationId], function (err) {
-          if (err) {
-              res.status(500).send({err})
-              callback(false);
-          } else {
-              console.log(`${reservationId} udate reserv SUCCESSFULLY `);
-              callback(true);
-          }
-      });
-  });
+      resolve({message :'Reservation updated successfully' })
+    }
+  )
+  })
+}
+//دیدن تمام تایم های رزرو
+function getAllReserv(){
+  return new Promise((resolve, reject)=> {
+    const query= 'SELECT * FROM  reservations'
+    db.get(query, (err)=> {
+      if(err){
+        reject(err)
+      }
+      resolve(true)
+    })
+  })
 }
 //  table customer
 function addcustomer(data) {
@@ -131,20 +121,48 @@ function deletecustomer(id) {
     });
   });
 }
+function getcustomer(id) {
+  return new Promise((resolve, reject) => {
+    var queryget = "SELECT * FROM customer WHERE id = ?";
+    db.get(queryget, [id], (err, row) => {
+      if (err) {
+        reject(err);
+      }
+      if (row === undefined) {
+        reject(err);
+      }
+      resolve(row);
+    });
+  });
+}
+function getAllCustomer() {
+  return new Promise((resolve, reject) => {
+    var queryget = "SELECT * FROM customer ";
+    db.get(queryget, (err, row) => {
+      if (err) {
+        reject(err);
+      }
+      resolve(row);
+    });
+  });
+}
+
+
   // details all table Tournaments
 
   // added Tournaments 
   function addtour(data) {
-    return new Promise ((resolve, reject)=> {
-      var query ="INSERT INTO phone (id, name, winner, prize) VALUES (?, ?, ?, ?)";
-      db.run(query [data.id, data.name, data.winner, data.prize], (err)=> {
+    return new Promise((resolve, reject) => {
+      var query = "INSERT INTO Tournaments (id, name, winner, prize) VALUES (?, ?, ?, ?)";
+      db.run(query, [data.id, data.name, data.winner, data.prize], (err) => {
         if (err) {
-          reject(err)
+          reject(err);
         }
-        resolve(true)
+        resolve(true);
       });
     });
   }
+
   function deletetour(id) {
     return new Promise ((resolve, reject)=> {
       var query= "DELETE FROM user WHERE id = ?";
@@ -157,12 +175,7 @@ function deletecustomer(id) {
     });
   }
   // update tour
-  function updatecomp(
-    id,
-    name,
-    winner,
-    prize
-  ) {
+  function updatecomp(id, name, winner, prize) {
     return new Promise((resolve, reject) => {
       var checkQuery = "SELECT * FROM tu WHERE name = ? AND id != ?";
       db.get(checkQuery, [name, id], (err, row) => {
@@ -171,8 +184,7 @@ function deletecustomer(id) {
         } else if (row) {
           resolve({ err: "this data already exists" });
         } else {
-          var updatecomp =
-            "var checkQuery = SELECT * FROM Tournaments WHERE name = ? AND winner = ? AND prize = ? AND id != ?";
+          var updateQuery = "UPDATE Tournaments SET name = ?, winner = ?, prize = ? WHERE id = ?";
           db.run(updateQuery, [name, winner, prize, id], (err) => {
             if (err) {
               reject(err);
@@ -184,10 +196,9 @@ function deletecustomer(id) {
       });
     });
   }
-
-    
+  
   function gettour(id) {
-    return new Promise((reject, resolve) => {
+    return new Promise((resolve, reject) => {
       var queryget = "SELECT * FROM Tournaments WHERE id = ?";
       db.get(queryget, [id], (err, row) => {
         if (err) {
@@ -264,23 +275,23 @@ function getallpay() {
 }
    // details all table table
    
-  //  add table
-  function addtable(data) {
+   function addtable(data) {
     return new Promise((resolve, reject) => {
       var query =
-        "INSERT INTO table (id, table_number , status, price_per_hour, dacsriotion ) VALUES (?, ?, ?, ? ,?)";
-      db.run(query, [data.id, data.table_number, data.price_per_hour, data.decsription, data.status], (err) => {
+        "INSERT INTO tables (id, tableNumber, status, pricePerHour, description) VALUES (?, ?, ?, ?, ?)";
+      db.run(query, [data.id, data.tableNumber, data.status, data.pricePerHour, data.description], (err) => {
         if (err) {
           reject(err);
         }
         resolve(true);
       });
     });
-  } 
+  }
+  
   // delete table
   function deletetable(id){
     return new Promise ((resolve, reject)=> {
-      var query = "DELETE FROM table WHERE id = ?";
+      var query = "DELETE FROM tables WHERE id = ?";
       db.run(query, [id], (err)=> {
         if (err) {
           reject(err);
@@ -293,18 +304,18 @@ function getallpay() {
     })
   }
   // update table 
-  function updatetable(id, table_number, price_per_hour, decsription, status) {
+  function updatetable(id, tableNumber, pricePerHour, description, status) {
     return new Promise((resolve, reject) => {
-      var checkQuery = "SELECT * FROM table WHERE table_number = ? AND id != ?";
-      db.get(checkQuery, [table_number, id], (err, row) => {
+      var checkQuery = "SELECT * FROM tables WHERE tablNumber = ? AND id != ?";
+      db.get(checkQuery, [tableNumber, id], (err, row) => {
         if (err) {
           reject(err);
         } else if (row) {
           resolve({ err: "this data already exists" });
         } else {
           var updatecomp =
-            "var checkQuery = SELECT * FROM table WHERE table_number =? AND status =? AND price_per_hour =? decsription =?  AND id !=?";
-          db.run(updatecomp, [id, table_number, price_per_hour, decsription, status], (err) => {
+            "var checkQuery = SELECT * FROM tables WHERE table_number =? AND status =? AND price_per_hour =? decsription =?  AND id !=?";
+          db.run(updatecomp, [id, tableNumber, pricePerHour, description, status], (err) => {
             if (err) {
               reject(err);
             } else {
@@ -316,8 +327,8 @@ function getallpay() {
     });
   }
   function getall(){
-    return new promise ((resolve, reject)=> {
-      var query = "SELECT * FROM table";
+    return new Promise((resolve, reject)=> {
+      var query = "SELECT * FROM tables";
       db.all(query, (err, row) => {
         if (err) {
           reject(err);
@@ -329,69 +340,56 @@ function getallpay() {
   }
 // get table for id
 function gettable(id) {
-  return new Promise((reject, resolve) => {
-    var queryget = "SELECT * FROM table WHERE id = ?";
+  return new Promise((resolve, reject) => {
+    var queryget = "SELECT * FROM tables WHERE id = ?";
     db.get(queryget, [id], (err, row) => {
       if (err) {
         reject(err);
       }
       if (row === undefined) {
-        reject(err);
+        reject('No data found');
       }
       resolve(row);
     });
   });
 }
-function startTimer(tableId) {
-  return new Promise((resolve, reject) => {
-    const startTime = Date.now(); // زمان شروع تایمر
-
-    const query = "INSERT INTO sessions (table_id, start_time, elapsed_time) VALUES (?, ?, 0)";
-    db.run(query, [tableId, startTime], function (err) {
-      if (err) {
-        reject("Failed to start timer.");
-      }
-      resolve({ sessionId: this.lastID, startTime });
+//برای محاصبه قیمت میز ها
+function startTimer(table_id) {
+  return new Promise((resolve, reject)=> {
+    var query = `INSERT INTO sessions (table_id, start_time) VALUES (?, ?)`;
+    const startTime = Date.new();
+    db.run(query, [table_id, startTime],
+      (err) => {
+        if(err) 
+          reject(err)
+        else resolve({sessoinId : this.lastId, startTime});
+      });
     });
-  });
-}
-
-function stopTimer(sessionId, rate) {
-  return new Promise((resolve, reject) => {
-    const endTime = Date.now(); // زمان پایان تایمر
-
-    const query = `
-      UPDATE sessions
-      SET end_time = ?, elapsed_time = (end_time - start_time) / 1000,
-          cost = (elapsed_time / 3600) * ?
+  }
+  function stopTimer(sessoinId, rate) {
+    return new Promise ((resolve, reject)=> { 
+      const endTime = Data.new();
+      const query = `UPDATE sessions
+      SET end_time = ?, elapsed_time = end_time - start_time,
+          total_cost = ((elapsed_time / 1000) / 3600) * ?
       WHERE id = ?
     `;
-    db.run(query, [endTime, rate, sessionId], (err) => {
-      if (err) {
-        reject("Failed to stop timer.");
-      }
-      resolve({ message: "Timer stopped and cost calculated." });
+    db.run(query, [endTime, rate, sessoinId], (err)=> {
+      if(err) reject(err)
+        else resolve ({sessoinId, endTime});
     });
-  });
-}
-function getTimerStatus(sessionId) {
-  return new Promise((resolve, reject) => {
-    const query = "SELECT * FROM sessions WHERE id = ? AND end_time IS NULL";
-    db.get(query, [sessionId], (err, row) => {
-      if (err) {
-        reject("Failed to fetch timer status.");
-      }
-      if (!row) {
-        resolve({ active: false });
-      } else {
-        const currentTime = Date.now();
-        const elapsedTime = (currentTime - row.start_time) / 1000; // زمان سپری‌شده به ثانیه
-        resolve({ active: true, elapsedTime });
-      }
     });
-  });
-}
-
+  };
+  function getTimerStatus(sessoinId) { 
+    return new Promise ((resolve, reject)=> {
+      const query = `SELECT start_time, end_time, elapsed_time, total_cost
+      FROM sessions WHERE id = ?`;
+      db.get(query [sessoinId], (err, rew)=> {
+        if (err) reject(err)
+          else resolve(rew)
+        })
+    })
+  }
 
 
 export  {
@@ -402,7 +400,6 @@ getallpay,
 addtable,
 adduser,
 deleteuser,
-reserveTable,
 deletereserv,
 updateReservation,
 addcustomer,
@@ -416,6 +413,11 @@ deletepayments,
 getpayments,
 getTimerStatus,
 stopTimer,
-startTimer
+startTimer,
+gettable, 
+addreserv,
+getcustomer,
+getAllCustomer,
+getAllReserv
 
 };

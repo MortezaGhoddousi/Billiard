@@ -4,6 +4,9 @@ import {getallpay,
         addpayments,
         deletepayments,
         getpayments} from '../db.mjs';
+
+          
+        //چک کردن تمام پرداخت ها
 paymentsrouter.get("/checkall", (req, res) => {
 getallpay()
     .then((results) => {
@@ -11,6 +14,9 @@ getallpay()
         })
     .catch((err) => res.status(500).send({ ERROR: err }));
 });
+
+//اضافه کردن پرداخت
+
 paymentsrouter.post("/", (req, res) => {
     addpayments(req.body)
       .then((result) => {
@@ -18,6 +24,9 @@ paymentsrouter.post("/", (req, res) => {
       })
       .catch((err) => res.status(500).send({ ERROR: err }));
   });
+
+  //پاک کردن پرداخت
+
   paymentsrouter.delete("/:id", (req, res) => {
     deletepayments(req.params.id)
       .then((result) => {
@@ -29,6 +38,9 @@ paymentsrouter.post("/", (req, res) => {
       })
       .catch((err) => res.status(500).send({ ERROR: err }));
   });
+
+  //دیدن پرداخت با استفاده از ایدی
+ 
   paymentsrouter.get("/:id", (req, res) => {
     getpayments(req.params.id)
       .then((result) => {

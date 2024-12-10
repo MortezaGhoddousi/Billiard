@@ -1,13 +1,13 @@
 import express from "express";
 import {
-getall,
+gettable,
 updatetable,
 deletetable,
 addtable,
 } from "../db.mjs";
 const tablerouter = express.Router();
 tablerouter.get("/:id", (req, res) => {
-    getall(req.params.id)
+    gettable(req.params.id)
       .then((result) => {
         if (result) {
           res.status(200).send(result);
@@ -18,7 +18,7 @@ tablerouter.get("/:id", (req, res) => {
       .catch((err) => res.status(500).send({ ERROR: err }));
   });
   
-  // addphone
+  // addTABLE
   tablerouter.post("/", (req, res) => {
     addtable(req.body)
       .then((result) => {
@@ -27,7 +27,7 @@ tablerouter.get("/:id", (req, res) => {
       .catch((err) => res.status(500).send({ ERROR: err }));
   });
   
-  // deletephone
+  // deletetable
   tablerouter.delete("/:id", (req, res) => {
     deletetable(req.params.id)
       .then((result) => {
@@ -38,9 +38,8 @@ tablerouter.get("/:id", (req, res) => {
         }
       })
       .catch((err) => res.status(500).send({ ERROR: err }));
-  });
-  
-  // updatePhone
+  });  
+  // updatetable
   tablerouter.put("/:id", (req, res) => {
     updatetable(req.params.id, req.body.role)
       .then((result) => {

@@ -23,8 +23,12 @@ TournamentsRouter.get("/:id", (req, res) => {
       .then((result) => {
         res.status(200).send({ STATUS: "Data added successfully" });
       })
-      .catch((err) => res.status(500).send({ ERROR: err }));
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send({ ERROR: err.message || "Internal Server Error" });
+      });
   });
+  
   
   // 
   TournamentsRouter.delete("/:id", (req, res) => {
@@ -38,6 +42,7 @@ TournamentsRouter.get("/:id", (req, res) => {
       })
       .catch((err) => res.status(500).send({ ERROR: err }));
   });
+  
   
   // 
   TournamentsRouter.put("/:id", (req, res) => {
