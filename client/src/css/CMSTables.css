@@ -1,0 +1,56 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    padding: 20px 60px;
+    margin-bottom: 40px;
+    border: 1px solid #404040;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+form h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+form input:not([type="submit"]) {
+    padding: 10px;
+    border: 1px solid #404040;
+    background-color: #000000;
+    outline: none;
+    width: 270px;
+    font-weight: bold;
+    color: whitesmoke;
+}
+
+form input[type=submit] {
+    
+    padding: 10px 20px;
+    font-weight: bold;
+    border: none;
+    background-color: #F7BB26;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+form input[type=submit]:hover {
+    background-color: whitesmoke;
+}
