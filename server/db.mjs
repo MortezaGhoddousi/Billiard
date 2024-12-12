@@ -326,7 +326,7 @@ function getallpay() {
       });
     });
   }
-  function getall(){
+  function getalltables(){
     return new Promise((resolve, reject)=> {
       var query = "SELECT * FROM tables";
       db.all(query, (err, row) => {
@@ -393,7 +393,7 @@ function startTimer(table_id) {
 
 
 export  {
-getall,
+getalltables,
 updatetable,
 deletetable,
 getallpay,
