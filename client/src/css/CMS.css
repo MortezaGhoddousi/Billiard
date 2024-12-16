@@ -1,0 +1,23 @@
+
+.main {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: start;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .main article {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 40px;
+    align-items: center;
+    width: 100%;
+  }
+  
+  @media (max-width:768px) {
+    .main {
+      flex-direction: column-reverse;
+    }
+  }
