@@ -1,0 +1,128 @@
+:root {
+--bg: black;
+--text: white;
+--secbg: gray;
+--number: 8;
+}
+
+/* Bracket.css */
+
+.bracket-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #1e1e2f;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.round-1 {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; */
+    display: grid;
+    grid-template-rows: repeat(var(--number)+(var(--number)/2), 1fr);
+    justify-content: center;
+    align-items: center;
+}
+
+.round-2 {
+    display: grid;
+    grid-template-rows: repeat(var(--number)/2, 1fr);
+    justify-content: center;
+    align-items: center;
+}
+
+.semi-finals {
+    display: grid;
+    grid-template-rows: repeat(var(--number)/4, 1fr);
+    justify-content: center;
+    align-items: center;
+}
+
+.final {
+    display: grid;
+    grid-template-rows: repeat(var(--number)/8, 1fr);
+    justify-content: center;
+    align-items: center;
+}
+
+
+.round-1 .match,
+.round-2 .match,
+.semi-finals .match,
+.final .match {
+    width: 150px;
+    height: 40px;
+    margin: 10px 0;
+    background-color: #2d2d42;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.match span {
+    font-size: 14px;
+    font-weight: bold;
+    padding-left: 9px;
+}
+
+.round-1 {
+    flex: 1;
+}
+
+.round-2 {
+    flex: 1;
+}
+
+.semi-finals {
+    flex: 1;
+}
+
+.final {
+    flex: 1;
+}
+
+@media (max-width: 768px) {
+    .bracket-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .round {
+        margin-bottom: 20px;
+    }
+
+    .match {
+        width: 100px;
+        height: 30px;
+    }
+}
+
+.profile {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+section #result {
+    background-color: #eee;
+    border-radius: 7px;
+    width: 50px;
+    height: 40px;
+    margin: 10px 0;
+}
