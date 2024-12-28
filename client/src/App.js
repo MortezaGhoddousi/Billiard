@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { createContext } from 'react';
+import Tournament from './components/Tournament/Tournament';
 
 export const nameContext = createContext();
 
@@ -43,6 +44,7 @@ function App() {
               <Route path="/shop" element={<Shop />} />
               <Route path="/cms/admin" element={<CMS />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/tournament" element={<Tournament />} />
             </Routes>
         </nameContext.Provider>
       </BrowserRouter> 
