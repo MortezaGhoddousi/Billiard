@@ -1,8 +1,8 @@
-import React from 'react';
-import '../../css/Tournament.css';
+import React, { useState } from "react";
+import "../../css/Tournament.css";
 
 const Tournament = () => {
-  const players = [
+  const initialPlayers = [
     "Player 1",
     "Player 2",
     "Player 3",
@@ -13,75 +13,101 @@ const Tournament = () => {
     "Player 8",
   ];
 
-  const handleClick = (e) => {
-    var result = prompt('enter result the match');
-    console.log(result);
-  }
+  const [players, setPlayers] = useState(initialPlayers);
+  const [roundScores, setRoundScores] = useState(
+    Array(initialPlayers.length).fill(0)
+  );
+  const [winners, setWinners] = useState([[]]); // ابتدا یک آرایه خالی برای برندگان داریم
 
-  return (
-    <div className="bracket-container">
-      <div className="round round-1">
-        {players.map((player, index) => {
-          
-          if (index%2 == 0) {
-            return (
-            <section>
-              <div key={index} className="match">
-                <img className='profile' src='./images/images.png' alt='profile'/>
+  const numRounds = Math.log2(players.length);
+
+  const getRoundPlayers = (roundIndex) => {
+    if (roundIndex === 0) return players; // راند اول، تمام بازیکنان
+    return winners[roundIndex - 1] || []; // برای راندهای بعدی، برندگان راند قبلی
+  };
+
+  const handleScoreInput = (round, index) => {
+    const result = prompt(`Enter score for ${getRoundPlayers(round)[index]}:`);
+    if (result !== null) {
+      const updatedScores = [...roundScores];
+      updatedScores[index] = parseInt(result, 10);
+      setRoundScores(updatedScores);
+
+      if (round === 0 && index % 2 === 1) {
+        // برای راند اول، مقایسه دو بازیکن و انتخاب برنده
+        const pairIndex = Math.floor(index / 2) * 2;
+        const winner =
+          updatedScores[pairIndex] >= updatedScores[pairIndex + 1]
+            ? players[pairIndex]
+            : players[pairIndex + 1];
+
+        const updatedWinners = [...winners[round]];
+        updatedWinners[Math.floor(pairIndex / 2)] = winner;
+
+        setWinners((prevWinners) => {
+          const updatedWinnersList = [...prevWinners];
+          updatedWinnersList[round] = updatedWinners;
+          return updatedWinnersList;
+        });
+      } else {
+        // بعد از راند اول، باید برنده‌ها را برای راند بعدی ذخیره کنیم
+        if (index % 2 === 1) {
+          const pairIndex = Math.floor(index / 2) * 2;
+          const winner =
+            updatedScores[pairIndex] >= updatedScores[pairIndex + 1]
+              ? getRoundPlayers(round)[pairIndex]
+              : getRoundPlayers(round)[pairIndex + 1];
+
+          const updatedWinners = winners[round] || [];
+          updatedWinners[Math.floor(index / 2)] = winner;
+
+          setWinners((prevWinners) => {
+            const updatedWinnersList = [...prevWinners];
+            updatedWinnersList[round] = updatedWinners;
+            return updatedWinnersList;
+          });
+        }
+      }
+    }
+  };
+
+  const renderRound = (roundIndex) => {
+    const roundPlayers = getRoundPlayers(roundIndex);
+    return (
+      <div className={`round round-${roundIndex}`} key={roundIndex}>
+        <div className="round-matches">
+          {roundPlayers.map((player, index) => (
+            <section key={index}>
+              <div className="match">
+                <img
+                  className="profile"
+                  src="./images/images.png"
+                  alt="profile"
+                />
                 <span>{player}</span>
               </div>
-              <p id="result"></p>
+              <p id="result" style={{ color: "black" }}>
+                {roundScores[index] || 0}
+              </p>
+              <button onClick={() => handleScoreInput(roundIndex, index)}>
+                Set Score
+              </button>
             </section>
-            )
-          }
-          else {
-            return (
-              <>
-                <section>
-                  <div key={index} className="match">
-                    <img className='profile' src='./images/images.png' alt='profile'/>
-                    <span>{player}</span>
-                  </div>
-                  <p id="result"></p>
-                </section>
-                <button onClick={handleClick}>click</button>
-              </>
-            )
-          }
-    }
-          )}
-      </div>
-      <div className="round round-2">
-        {[...Array(players.length / 2)].map((_, index) => (
-          <section> 
-            <div key={index} className="match">
-              <img className='profile' src='./images/images.png' alt='profile'/>
-              <span>Winner</span>
-            </div>
-            <p id="result"></p>
-          </section>
-        ))}
-      </div>
-      <div className="round semi-finals">
-        {[...Array(players.length / 4)].map((_, index) => (
-
-          <section>
-            <div key={index} className="match">
-              <img className='profile' src='./images/images.png' alt='profile'/>
-              <span>Winner</span>
-            </div>
-            <p id="result"></p>
-          </section>
-        ))}
-      </div>
-      <div className="round final">
-        <div className="match">
-        <img className='profile' src='./images/images.png' alt='profile'/>
-          <span>Winner</span>
+          ))}
         </div>
       </div>
-    </div>
-  );
+    );
+  };
+
+  const renderAllRounds = () => {
+    const rounds = [];
+    for (let roundIndex = 0; roundIndex < numRounds; roundIndex++) {
+      rounds.push(renderRound(roundIndex));
+    }
+    return rounds;
+  };
+
+  return <div className="bracket-container">{renderAllRounds()}</div>;
 };
 
 export default Tournament;
