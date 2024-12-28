@@ -4,10 +4,7 @@ import { useContext } from 'react';
 import { nameContext } from '../App';
 
 function Tables({children}) {
-    // Destructure the context values
     const [snooker, billiard] = useContext(nameContext); 
-    console.log(snooker); // Log snooker tables
-    console.log(billiard); // Log billiard tables
 
     return (
         <section id="tables">
@@ -20,7 +17,7 @@ function Tables({children}) {
                             <img src="./images/snooker.webp" alt="" />
                             <div className="overlay"></div>
                         </div>
-                       <Timer price={table.price / 3600} />
+                       <Timer price={table.price / 3600} table={table.table} />
                     </div>
                 ))}
             </div>
@@ -32,7 +29,7 @@ function Tables({children}) {
                            <img src="./images/billiard.jpg" alt="" />
                            <div className="overlay"></div>
                        </div>
-                       <Timer price={table.price / 3600} />
+                       <Timer price={table.price / 3600} table={table.table} />
                    </div>
                 ))}
             </div>

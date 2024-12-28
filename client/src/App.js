@@ -21,9 +21,9 @@ function App() {
             const result = await axios.get('http://localhost:8000/api/table');
             result.data.forEach(element => {
                 if (element.description === 'snooker') {
-                    setSnooker(prevSnooker => [...prevSnooker, { id: element.tableNumber, price: element.pricePerHour }]);
+                    setSnooker(prevSnooker => [...prevSnooker, { id: element.tableNumber, price: element.pricePerHour, table: element.id }]);
                 } else if (element.description === 'pocket') {
-                    setBilliard(prevBilliard => [...prevBilliard, { id: element.tableNumber, price: element.pricePerHour }]);
+                    setBilliard(prevBilliard => [...prevBilliard, { id: element.tableNumber, price: element.pricePerHour, table: element.id }]);
                 }
             });
         } catch (e) {
