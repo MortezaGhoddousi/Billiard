@@ -1,14 +1,14 @@
 import express from "express";
 import bodyParser from "body-parser";
-import userRouter from "./apirouter/userRouter.mjs";
-import customerRouter from "./apirouter/custrouter.mjs";
-import paymentsrouter from "./apirouter/paymentrouter.mjs";
-import reservationrouter from "./apirouter/reservrouter.mjs";
-import tablerouter from "./apirouter/tablerouter.mjs";
-import TournamentsRouter from "./apirouter/tournamentrouter.mjs";
-import sessoinrouter from "./apirouter/sessoinrouter.mjs";
+import userRouter from "./apiRouter/userRouter.mjs";
+import customerRouter from "./apiRouter/custRouter.mjs";
+import paymentsRouter from "./apiRouter/paymentRouter.mjs";
+import reservationRouter from "./apiRouter/reserveRouter.mjs";
+import tableRouter from "./apiRouter/tableRouter.mjs";
+import TournamentsRouter from "./apiRouter/tournamentRouter.mjs";
+import sessionRouter from "./apiRouter/sessionRouter.mjs";
 import cors from "cors";
-import routerverfy from "./apirouter/verifyrouter.mjs";
+import routerVerify from "./apiRouter/verifyRouter.mjs";
 import cookieParser from "cookie-parser";
 
 var app = express();
@@ -19,21 +19,21 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(
-  cors({
-    origin: "http://localhost:3000",
-  })
+    cors({
+        origin: "http://localhost:3000",
+    })
 );
 
 app.use("/api/user", userRouter);
 app.use("/api/customer", customerRouter);
-app.use("/api/payments", paymentsrouter);
-app.use("/api/reserv", reservationrouter);
-app.use("/api/table", tablerouter);
+app.use("/api/payments", paymentsRouter);
+app.use("/api/reserve", reservationRouter);
+app.use("/api/table", tableRouter);
 app.use("/api/tour", TournamentsRouter);
-app.use("/api", sessoinrouter);
-app.use("/api/cms", routerverfy);
+app.use("/api", sessionRouter);
+app.use("/api/cms", routerVerify);
 
 const port = 8000;
 app.listen(port, () => {
-  console.log(`server is runing on port ${port}`);
+    console.log(`server is running on port ${port}`);
 });

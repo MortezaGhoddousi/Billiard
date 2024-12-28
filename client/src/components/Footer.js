@@ -8,7 +8,7 @@ function Footer() {
                 <h1>لوگو.</h1>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi magnam ut atque quis quos et esse consequuntur, reprehenderit nemo assumenda tenetur porro ipsam reiciendis quia. Consequatur accusantium neque optio consectetur.</p>
                 <div className="phone">
-                    <i class='bx bxs-phone'></i>
+                    <i className='bx bxs-phone'></i>
                     <h5>۰۵۱۳-۸۷۱۵۶۳۷</h5>
                 </div>
             </div>
