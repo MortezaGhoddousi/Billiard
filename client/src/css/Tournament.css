@@ -1,14 +1,12 @@
 :root {
-  --bg: #1e1e2f; /* رنگ پس‌زمینه تیره */
-  --text: white; /* رنگ متن سفید */
-  --secbg: #333333; /* رنگ پس‌زمینه ثانویه تیره‌تر */
+  --bg: #1e1e2f;
+  --text: white;
+  --secbg: #333333;
   --number: 8;
-  --highlight: #f7bb26; /* رنگ زرد برای دکمه‌ها و موارد انتخابی */
-  --dark: #000000; /* رنگ سیاه */
-  --secondary-highlight: #ffaa00; /* زرد کمی روشن‌تر برای حالت hover */
+  --highlight: #f7bb26;
+  --dark: #000000;
+  --secondary-highlight: #ffaa00;
 }
-
-/* Bracket.css */
 
 .bracket-container {
   display: flex;
@@ -149,18 +147,24 @@ section {
 }
 
 .bracket-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   overflow-y: auto;
+  height: 100vh;
   padding: 10px;
   box-sizing: border-box;
+  background: linear-gradient(180deg, #1e1e2f, #423512);
 }
 
 .round {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 20px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
-
-/* Tournament.css */
 
 .match {
   padding: 10px;
@@ -169,7 +173,7 @@ section {
   border-radius: 8px;
   display: flex;
   align-items: center;
-  background-color: var(--dark); /* پس‌زمینه سیاه */
+  background-color: var(--dark);
 }
 
 .match img.profile {
@@ -184,36 +188,46 @@ section {
   font-weight: bold;
 }
 
-/* رنگ طلایی برای برنده */
 .match.winner {
-  background-color: var(--highlight); /* پس‌زمینه طلایی برای برنده */
-  border: 1px solid var(--highlight); /* حاشیه طلایی */
+  background-color: var(--highlight);
+  border: 1px solid var(--highlight);
 }
-/* Bracket.css */
+
 .profile {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--highlight); /* پیش‌فرض رنگ حاشیه */
+  border: 2px solid var(--highlight);
   transition: all 0.3s ease;
 }
 
 .profile.winner {
-  border-color: #4caf50; /* سبز برای برنده */
+  border-color: #4caf50;
 }
 
 .profile.loser {
-  border-color: #ff0000; /* قرمز برای بازنده */
+  border-color: #ff0000;
 }
 
-/* تغییرات اضافی برای برنده و بازنده */
 .match.winner {
-  background-color: #423512; /* پس‌زمینه طلایی برای برنده */
-  border: 1px solid #f7bb26; /* حاشیه طلایی */
+  background-color: #423512;
+  border: 1px solid #f7bb26;
 }
 
 .match.loser {
-  background-color: #ff6347; /* پس‌زمینه قرمز برای بازنده */
-  border: 1px solid #ff6347; /* حاشیه قرمز */
+  background-color: #ff6347;
+  border: 1px solid #ff6347;
+}
+
+.final-winner {
+  background-color: var(--secbg);
+  border-radius: 7px;
+  width: 70px;
+  height: 50px;
+  margin: 10px 0;
+  text-align: center;
+  line-height: 50px;
+  font-size: 14px;
+  font-weight: bold;
 }
