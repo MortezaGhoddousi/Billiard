@@ -1,40 +1,80 @@
-import '../css/Tables.css';
-import Timer from './Timer'; 
-import { useContext } from 'react';
-import { nameContext } from '../App';
+import "../css/Tables.css";
+import Timer from "./Timer";
+import { useContext } from "react";
+import { nameContext } from "../App";
 
-function Tables({children}) {
-    // Destructure the context values
-    const [snooker, billiard] = useContext(nameContext); 
-    console.log(snooker); // Log snooker tables
-    console.log(billiard); // Log billiard tables
+function Tables({ children }) {
+    const [snooker, billiard] = useContext(nameContext);
+
+    const getLocalStorageData = (key) => {
+        const storedData = localStorage.getItem(key);
+        return storedData ? JSON.parse(storedData) : null;
+    };
 
     return (
         <section id="tables">
             <h1>میزها</h1>
             <div className="snooker">
-                {snooker.map((table) => (
-                    <div className="option" key={table.id}>
-                        <div className="image-container">
-                            <h1>{table.id}</h1>
-                            <img src="./images/snooker.webp" alt="" />
-                            <div className="overlay"></div>
+                {snooker.map((table) => {
+                    const localData = getLocalStorageData(table.table);
+
+                    return (
+                        <div
+                            className="option"
+                            id={`table${table.table}`}
+                            key={table.id}
+                        >
+                            <div className="image-container">
+                                <h1>{table.id}</h1>
+                                <img src="./images/snooker.webp" alt="" />
+                                <div className="overlay"></div>
+                            </div>
+                            <Timer
+                                price={table.price / 3600}
+                                table={table.table}
+                                description={
+                                    localData
+                                        ? localData.description
+                                        : table.description
+                                }
+                                startTime={
+                                    localData ? localData.startTime : null
+                                }
+                            />
                         </div>
-                       <Timer price={table.price / 3600} />
-                    </div>
-                ))}
+                    );
+                })}
             </div>
             <div className="billiard">
-                {billiard.map((table) => (
-                   <div className="option" key={table.id}>
-                       <div className="image-container">
-                           <h1>{table.id}</h1>
-                           <img src="./images/billiard.jpg" alt="" />
-                           <div className="overlay"></div>
-                       </div>
-                       <Timer price={table.price / 3600} />
-                   </div>
-                ))}
+                {billiard.map((table) => {
+                    const localData = getLocalStorageData(table.table);
+
+                    return (
+                        <div
+                            className="option"
+                            id={`table${table.table}`}
+                            key={table.id}
+                        >
+                            <div className="image-container">
+                                <h1>{table.id}</h1>
+                                <img src="./images/billiard.jpg" alt="" />
+                                <div className="overlay"></div>
+                            </div>
+                            <Timer
+                                price={table.price / 3600}
+                                table={table.table}
+                                description={
+                                    localData
+                                        ? localData.description
+                                        : table.description
+                                }
+                                startTime={
+                                    localData ? localData.startTime : null
+                                }
+                            />
+                        </div>
+                    );
+                })}
             </div>
             {children}
         </section>

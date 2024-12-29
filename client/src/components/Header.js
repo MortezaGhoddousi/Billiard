@@ -23,7 +23,7 @@ function Header() {
         <header>
             <div>
                 <h1>لوگو.</h1>
-                <i class='bx bx-menu' onClick={toggleMenu}></i>
+                <i className='bx bx-menu' onClick={toggleMenu}></i>
             </div>
             <ul className={isMenuOpen ? 'active' : ''}>
                 <li><Link to={"/"}>خانه</Link></li>
