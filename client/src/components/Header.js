@@ -1,21 +1,13 @@
 import '../css/Header.css'
 import { useState } from 'react';
-import { Link , useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Header() {
 
     const [isMenuOpen , setIsMenuOpen] = useState(false);
-    const navigate = useNavigate();
 
     function toggleMenu () {
         setIsMenuOpen(!isMenuOpen);
-    }
-
-    function handleTablesClick() {
-        navigate('/'); 
-        setTimeout(() => {
-            window.location.hash = 'tables'; 
-        }, 0); 
     }
 
 
@@ -27,8 +19,7 @@ function Header() {
             </div>
             <ul className={isMenuOpen ? 'active' : ''}>
                 <li><Link to={"/"}>خانه</Link></li>
-                <li><a href="#" onClick={handleTablesClick}>میز ها</a></li>
-                <li><a href="#contact" >تماس با ما</a></li>
+                <li><a href="/tables" >میز ها</a></li>
                 <li><Link to={"/shop"}>بوفه</Link></li>
 
             </ul>
