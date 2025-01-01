@@ -20,7 +20,7 @@ function Header() {
 
 
     return ( 
-        <header>
+        <header className='header.news'>
             <div>
                 <h1>لوگو.</h1>
                 <i className='bx bx-menu' onClick={toggleMenu}></i>
@@ -28,8 +28,10 @@ function Header() {
             <ul className={isMenuOpen ? 'active' : ''}>
                 <li><Link to={"/"}>خانه</Link></li>
                 <li><a href="#" onClick={handleTablesClick}>میز ها</a></li>
-                <li><a href="#contact" >تماس با ما</a></li>
+                <li><Link to={"/tournament"}>مسابقات</Link></li>
+                <li><Link to={"/news"}>اخبار</Link></li>
                 <li><Link to={"/shop"}>بوفه</Link></li>
+                <li><a href="#contact" >تماس با ما</a></li>
 
             </ul>
         </header>
