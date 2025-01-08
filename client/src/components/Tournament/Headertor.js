@@ -1,6 +1,7 @@
 import "../../css/tournoment/Headertor.css"
 import { useState } from 'react';
 import { Link , useNavigate } from 'react-router-dom';
+import RegistrationForm from "./RegistrationForm";
 
 function Headertor() {
 
@@ -28,10 +29,10 @@ function Headertor() {
             <ul className={isMenuOpen ? 'active' : ''}>
                 <li><Link to={"/"}>خانه</Link></li>
                 <li><a href="#" onClick={handleTablesClick}>میز ها</a></li>
-                <li><Link to={"/tournoment"}>مسابقات</Link></li>
+                <li><Link to={"/tournament"}>مسابقات</Link></li>
                 <li><Link to={"/news"}>اخبار</Link></li>
                 <li><Link to={"/shop"}>بوفه</Link></li>
-                <li><a href="#contact" >تماس با ما</a></li>
+                <li><Link to={"/RegistrationForm"}>ثبت نام </Link></li>
 
             </ul>
         </header>

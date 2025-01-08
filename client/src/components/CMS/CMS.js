@@ -5,6 +5,7 @@ import SideBar  from './SideBar';
 import CMSHeader from './CMSHeader';
 import CMSTables from './CMSTables';
 import '../../css/CMS.css';
+import TournamentCMS from '../CMS/tournamentCMS';
 import { useState } from 'react';
 
 function CMS() {
@@ -22,9 +23,13 @@ function CMS() {
     else if (id === 'delete'){
       setCom((<RemoveProduct />));
     }
+    else if (id === 'tournament'){
+      setCom((<TournamentCMS/>))
+    }
     else if (id === 'price'){
       setCom((<CMSTables />));
     }
+    
   }
 
   return (

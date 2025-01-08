@@ -1,37 +1,69 @@
 import React from "react";
+import { Link } from "react-router-dom"; // وارد کردن Link
 import "../../css/Newspage/Newscard.css";
 
 function NewsPage() {
   const newsData = [
     {
-      title: "",
+      id: 1,
+      title: "show more",
       content:
         "مسابقات بیلیارد در سطح جهانی همیشه مورد توجه قرار می‌گیرد و حالا قرار است یک رویداد مهم دیگر در این عرصه برگزار شود. بیلیاردبازان از سراسر دنیا برای رقابت در این مسابقات مهیج و پرهیجان گرد هم می‌آیند. با دنبال کردن اخبار این مسابقات، اطلاعات به‌روز و هیجان‌انگیزترین لحظات را از دست ندهید.",
       image: "./images/1.jpg",
+      date: "2025-01-05 15:30",
     },
     {
+      id: 2,
       title: "تخفیفات ویژه تابستان",
       content:
-      "مسابقات بیلیارد در سطح جهانی همیشه مورد توجه قرار می‌گیرد و حالا قرار است یک رویداد مهم دیگر در این عرصه برگزار شود. بیلیاردبازان از سراسر دنیا برای رقابت در این مسابقات مهیج و پرهیجان گرد هم می‌آیند. با دنبال کردن اخبار این مسابقات، اطلاعات به‌روز و هیجان‌انگیزترین لحظات را از دست ندهید.",
+        "مسابقات بیلیارد در سطح جهانی همیشه مورد توجه قرار می‌گیرد و حالا قرار است یک رویداد مهم دیگر در این عرصه برگزار شود. بیلیاردبازان از سراسر دنیا برای رقابت در این مسابقات مهیج و پرهیجان گرد هم می‌آیند. با دنبال کردن اخبار این مسابقات، اطلاعات به‌روز و هیجان‌انگیزترین لحظات را از دست ندهید.",
       image: "./images/5.jpg",
+      date: "2025-01-06 10:00",
+    },
+    {
+      id: 3,
+      title: "تخفیفات ویژه تابستان",
+      content:
+        "مسابقات بیلیارد در سطح جهانی همیشه مورد توجه قرار می‌گیرد و حالا قرار است یک رویداد مهم دیگر در این عرصه برگزار شود. بیلیاردبازان از سراسر دنیا برای رقابت در این مسابقات مهیج و پرهیجان گرد هم می‌آیند. با دنبال کردن اخبار این مسابقات، اطلاعات به‌روز و هیجان‌انگیزترین لحظات را از دست ندهید.",
+      image: "./images/5.jpg",
+      date: "2025-01-07 18:45",
+    },
+    {
+      id: 4,
+      title: "تخفیفات ویژه تابستان",
+      content:
+        "مسابقات بیلیارد در سطح جهانی همیشه مورد توجه قرار می‌گیرد و حالا قرار است یک رویداد مهم دیگر در این عرصه برگزار شود. بیلیاردبازان از سراسر دنیا برای رقابت در این مسابقات مهیج و پرهیجان گرد هم می‌آیند. با دنبال کردن اخبار این مسابقات، اطلاعات به‌روز و هیجان‌انگیزترین لحظات را از دست ندهید.",
+      image: "./images/5.jpg",
+      date: "2025-01-08 22:15",
     },
   ];
+
+  const sortedNews = [...newsData].sort(
+    (a, b) => new Date(b.date) - new Date(a.date)
+  );
 
   return (
     <div className="news-page">
       <h1>مسابقات بزرگ بیلیارد در پیش است</h1>
-      {newsData.map((news, index) => (
-        <div key={index} className="news-article">
-          <div className="news-article__content">
-            <p>{news.content}</p>
+      {sortedNews.map((news, index) => (
+        <React.Fragment key={news.id}>
+          <div className="news-article">
+            <div className="news-article__content">
+              <p>{news.content}</p>
+            </div>
+            <img
+              src={news.image}
+              alt={news.title}
+              className="news-article__image"
+            />
+            <h2 className="news-article__title">
+             
+              <Link to={`/news/${news.id}`}>{news.title}</Link>
+            </h2>
+            <p className="news-article__date">زمان انتشار: {news.date}</p>
           </div>
-          <img
-            src={news.image}
-            alt={news.title}
-            className="news-article__image"
-          />
-          <h2 className="news-article__title">{news.title}</h2>
-        </div>
+          {(index + 1) % 2 === 0 && <h1>مسابقات در پیش رو است</h1>}
+        </React.Fragment>
       ))}
     </div>
   );

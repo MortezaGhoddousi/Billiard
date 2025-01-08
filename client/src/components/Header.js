@@ -31,6 +31,7 @@ function Header() {
                 <li><Link to={"/tournament"}>مسابقات</Link></li>
                 <li><Link to={"/news"}>اخبار</Link></li>
                 <li><Link to={"/shop"}>بوفه</Link></li>
+                <li><Link to={"/login"}>ورود</Link></li>
                 <li><a href="#contact" >تماس با ما</a></li>
 
             </ul>

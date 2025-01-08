@@ -33,6 +33,7 @@ function Header() {
             <li><Link to={"/news"}>اخبار</Link></li>
             <li><Link to={"/shop"}>بوفه</Link></li>
             <li><a href="#contact" >تماس با ما</a></li>
+            
 
         </ul>
     </nav>

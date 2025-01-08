@@ -8,7 +8,7 @@ nav{
   width: 100%;
   z-index: 100;
 background-color: transparent;
-  color: black;
+  color: rgb(41, 39, 39);
 }
 nav h1 {
   margin: 10px;
@@ -30,7 +30,7 @@ nav ul li {
 }
 
 nav ul li a {
-  color: black;
+  color: white;
   text-decoration: none;
   transition: 0.2s all ease-in-out;
   font-weight: bold;

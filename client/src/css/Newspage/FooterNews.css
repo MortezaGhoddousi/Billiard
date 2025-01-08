@@ -138,6 +138,9 @@
     border: none;
     outline: none; 
 }
+.contact {
+    background-color: #000000;
+}
 
 
 @media (min-width:992px) and (max-width:1200px) {
