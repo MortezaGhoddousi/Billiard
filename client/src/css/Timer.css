@@ -35,3 +35,12 @@
 .timer .buttons button:hover {
     background-color: whitesmoke;
 }
+
+.timer .prices {
+    direction: ltr;
+    overflow-y: auto;
+    height: 150px;
+    width: 100%;
+    padding: 15%;
+    scrollbar-width: thin;
+}

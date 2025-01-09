@@ -1,5 +1,6 @@
 import "./App.css";
 import Home from "./components/Home";
+import TablesShow from "./components/TablesShow";
 import Shop from "./components/Shop";
 import CMS from "./components/CMS/CMS";
 import Login from "./components/login/Login";
@@ -66,6 +67,7 @@ function App() {
                         <Route path="/shop" element={<Shop />} />
                         <Route path="/cms/admin" element={<CMS />} />
                         <Route path="/login" element={<Login />} />
+                        <Route path="/tables" element={<TablesShow />} />
                         <Route path="/tournament" element={<Tournament />} />
                     </Routes>
                 </nameContext.Provider>
