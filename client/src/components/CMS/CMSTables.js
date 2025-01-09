@@ -17,7 +17,7 @@ function CMSTable() {
 
     function handleSnookerSubmit(e) {
         e.preventDefault();
-        axios.put('http://localhost:8000/api/updateSnookerTables/' + snooker.id, snooker)
+        axios.put('http://localhost:8000/api/Table/' + snooker.id, snooker)
             .then((result) => {
                 console.log(result);
                 setSnooker({ id: '', price: '' });
