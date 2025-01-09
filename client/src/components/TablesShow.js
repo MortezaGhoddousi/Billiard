@@ -1,20 +1,19 @@
-import Tables from './Tables';
-import Header from './Header';
-import Footer from './Footer';
-import { useEffect } from 'react';
+import Tables from "./Tables";
+import Header from "./Header";
+import Footer from "./Footer";
+import { useEffect } from "react";
 
-function Home() {
-
+function TableShow() {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
-    return ( 
+    return (
         <>
             <Header />
             <Tables />
             <Footer />
         </>
-     );
+    );
 }
 
-export default Home;
+export default TableShow;
