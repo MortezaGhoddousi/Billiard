@@ -1,6 +1,5 @@
 import "../css/Hiome.css"
 import Carousel from './Carousel';
-import Tables from './Tables';
 import Header from './Header';
 import Footer from './Footer';
 import { useEffect } from 'react';
@@ -14,7 +13,6 @@ function Home() {
         <>
             <Header />
             <Carousel/>
-            <Tables />
             <Footer />
         </>
      );

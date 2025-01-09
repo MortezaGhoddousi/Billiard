@@ -1,5 +1,6 @@
 import "./App.css";
 import Home from "./components/Home";
+import TablesShow from "./components/TablesShow";
 import Shop from "./components/Shop";
 import CMS from "./components/CMS/CMS";
 import Login from "./components/login/Login";

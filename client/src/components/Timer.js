@@ -121,9 +121,11 @@ const Timer = ({ price, table, description, startTime }) => {
                 <button onClick={handleThis}>باز و بسته</button>
                 <button onClick={handleReset}>ریست</button>
             </div>
-            <p>هزینه جاری : {cost} تومان</p>
-            {prs}
-            <p>هزینه کل : {Cost} تومان</p>
+            <div className="prices">
+                <p>هزینه جاری : {cost} تومان</p>
+                {prs}
+                <p>هزینه کل : {Cost} تومان</p>
+            </div>
         </div>
     );
 };
