@@ -1,3 +1,4 @@
+import "../css/Hiome.css"
 import Carousel from './Carousel';
 import Header from './Header';
 import Footer from './Footer';
