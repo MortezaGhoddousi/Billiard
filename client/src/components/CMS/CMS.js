@@ -3,6 +3,7 @@ import UpdateProduct from "./UpdateProduct";
 import RemoveProduct from "./RemoveProduct";
 import SideBar from "./SideBar";
 import CMSHeader from "./CMSHeader";
+import Header from "../Header";
 import CMSTables from "./CMSTables";
 import "../../css/CMS.css";
 import TournamentCMS from "../CMS/tournamentCMS";
@@ -16,7 +17,6 @@ function CMS() {
         axios
             .get("http://localhost:8000/api/user/login/current")
             .then((result) => {
-                console.log(result);
                 if (result.data == "Unauthorized User!") {
                     window.location.href = "/login";
                 }
@@ -39,13 +39,16 @@ function CMS() {
     }
 
     return (
-        <div className="main">
-            <article>
-                <CMSHeader />
-                {com}
-            </article>
-            <SideBar getLi={getLi} />
-        </div>
+        <>
+            <Header />
+            <div className="main">
+                <article>
+                    <CMSHeader />
+                    {com}
+                </article>
+                <SideBar getLi={getLi} />
+            </div>
+        </>
     );
 }
 
