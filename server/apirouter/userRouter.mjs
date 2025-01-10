@@ -1,8 +1,9 @@
-import bcrypt from "bcrypt";
 import express from "express";
-import { adduser, deleteuser } from "../db.mjs";
 import sqlite from "sqlite3";
-import jsonwebtoken from "jsonwebtoken";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 var db = new sqlite.Database("./biliards.db", function (err) {
     if (err) console.log(err);
@@ -11,59 +12,62 @@ var db = new sqlite.Database("./biliards.db", function (err) {
 
 const userRouter = express.Router();
 
-// ثبت کاربر جدید
-userRouter.post("/", async (req, res) => {
-    const { username, password } = req.body;
-
-    try {
-        // هش کردن رمز عبور
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        // ذخیره در دیتابیس
-        const query = "INSERT INTO users (username, password) VALUES ($1, $2)";
-        await pool.query(query, [username, hashedPassword]);
-
-        res.status(200).send({ status: "کاربر با موفقیت اضافه شد." });
-    } catch (error) {
-        console.error("خطا در ثبت کاربر:", error);
-        res.status(500).send({ error: "خطا در سیستم" });
-    }
-});
-
 // ورود کاربر
 userRouter.post("/login", async (req, res) => {
     const { username, password } = req.body;
 
-    // جستجوی کاربر بر اساس نام کاربری
     const query = "SELECT * FROM user WHERE username = ?";
     db.get(query, [username], async (err, row) => {
         if (err) {
             return res.status(401).send({ message: "نام کاربری پیدا نشد" });
         } else if (row === undefined) {
-            return res.status(401).send({ message: "نام کاربری پیدا نشد" });
+            return res.status(404).send({ message: "نام کاربری پیدا نشد" });
         } else {
             if (password == row.password) {
+                const token = jwt.sign(
+                    { username: row.username },
+                    process.env.COOKIE_PRIVATE_KEY,
+                    { expiresIn: "1d" }
+                );
+                res.cookie("token", token);
                 return res.status(200).send({ message: "ورود موفقیت‌آمیز" });
             } else {
-                return res.status(401).send({ message: "رمز عبور اشتباه است" });
+                return res.status(402).send({ message: "رمز عبور اشتباه است" });
             }
         }
     });
 });
 
-// حذف کاربر
-userRouter.delete("/:id", async (req, res) => {
-    const userId = req.params.id;
+// چک کردن یوزر جاری
+userRouter.get("/login/current", (req, res) => {
+    const authorizedUser = (token) => {
+        return new Promise((resolve, reject) => {
+            if (!token) {
+                resolve("Unauthorized User!");
+            }
+            jwt.verify(
+                token,
+                process.env.COOKIE_PRIVATE_KEY,
+                (err, decoded) => {
+                    if (err) reject(err);
+                    resolve({ username: decoded.username });
+                }
+            );
+        });
+    };
+    authorizedUser(req.cookies.token)
+        .then((result) => {
+            res.status(200).json(result);
+        })
+        .catch((err) => {
+            res.status(400).json(err);
+        });
+});
 
-    try {
-        const query = "DELETE FROM users WHERE id = $1";
-        await pool.query(query, [userId]);
-
-        res.status(200).send({ status: "کاربر حذف شد." });
-    } catch (error) {
-        console.error("خطا در حذف کاربر:", error);
-        res.status(500).send({ error: "خطا در سیستم" });
-    }
+// خروج کاربر
+userRouter.delete("/login/current", (req, res) => {
+    res.clearCookie("token");
+    res.json("cookie cleared!");
 });
 
 export default userRouter;
