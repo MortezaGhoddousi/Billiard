@@ -19,13 +19,14 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
+    width: 22vw;
 }
 
 .timer .buttons button {
     padding: 5px 10px;
     font-weight: bold;
     border: none;
-    background-color: #F7BB26;
+    background-color: #f7bb26;
     transition: all 0.2s ease;
     cursor: pointer;
     font-size: 14px;

@@ -5,37 +5,43 @@
     gap: 10px;
     padding-bottom: 50px;
     padding-top: 50px;
+    background-color: black;
+    color: white;
+    width: 80vw;
 }
 
-.snooker , .billiard {
+.snooker,
+.billiard {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
     align-items: start;
     justify-items: center;
+    width: 80vw;
 }
 
-#tables .snooker .option , #tables .billiard .option {
+#tables .snooker .option,
+#tables .billiard .option {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
     border: 1px solid #404040;
-    width: 330px;
+    width: 25vw;
     height: auto;
     padding: 5px;
     text-align: right;
 }
 
-#tables .snooker .option .image-container , 
+#tables .snooker .option .image-container,
 #tables .billiard .option .image-container {
     width: 100%;
     height: 80%;
     position: relative;
 }
 
-#tables .snooker .option .image-container img , 
+#tables .snooker .option .image-container img,
 #tables .billiard .option .image-container img {
     width: 100%;
     height: 100%;
@@ -49,48 +55,45 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); 
+    background-color: rgba(0, 0, 0, 0.6);
 }
 
-#tables .snooker .option h1 ,
+#tables .snooker .option h1,
 #tables .billiard .option h1 {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); 
-    color: white; 
+    transform: translate(-50%, -50%);
+    color: white;
     z-index: 1;
 }
 
-
-@media (min-width:992px) and (max-width:1200px) {
+@media (min-width: 992px) and (max-width: 1200px) {
     #tables .snooker .option,
     #tables .billiard .option {
         width: 300px;
     }
 }
 
-@media (min-width:768px) and (max-width:992px) {
+@media (min-width: 768px) and (max-width: 992px) {
     #tables .snooker .option,
     #tables .billiard .option {
         width: 250px;
     }
 }
 
-@media (min-width:480px) and (max-width:768px) {
-
+@media (min-width: 480px) and (max-width: 768px) {
     #tables .snooker,
     #tables .billiard {
         grid-template-columns: 1fr;
     }
     #tables .snooker .option,
-    #tables .billiard .option{
+    #tables .billiard .option {
         width: 380px;
     }
 }
 
-@media (max-width:480px) {
-
+@media (max-width: 480px) {
     #tables .snooker,
     #tables .billiard {
         grid-template-columns: 1fr;

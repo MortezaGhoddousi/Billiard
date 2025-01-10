@@ -4,11 +4,13 @@ import TablesShow from "./components/TablesShow";
 import Shop from "./components/Shop";
 import CMS from "./components/CMS/CMS";
 import Login from "./components/login/Login";
+import News from "./components/News/News";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { createContext } from "react";
-import Tournament from "./components/Tournament/Tournament";
+import Apptor from "./components/Tournament/Apptor";
+import TableShow from "./components/TablesShow";
 
 export const nameContext = createContext();
 
@@ -67,8 +69,9 @@ function App() {
                         <Route path="/shop" element={<Shop />} />
                         <Route path="/cms/admin" element={<CMS />} />
                         <Route path="/login" element={<Login />} />
-                        <Route path="/tables" element={<TablesShow />} />
-                        <Route path="/tournament" element={<Tournament />} />
+                        <Route path="/tournament" element={<Apptor />} />
+                        <Route path="/News" element={<News />} />
+                        <Route path="/tables" element={<TableShow />} />
                     </Routes>
                 </nameContext.Provider>
             </BrowserRouter>

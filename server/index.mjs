@@ -18,9 +18,15 @@ app.use(express.json());
 
 app.use(cookieParser());
 
+// app.get("/login", (req, res) => {
+//     res.redirect("http://localhost:3000/login");
+// });
+
 app.use(
     cors({
         origin: "http://localhost:3000",
+        optionsSuccessStatus: 200,
+        credentials: true,
     })
 );
 
