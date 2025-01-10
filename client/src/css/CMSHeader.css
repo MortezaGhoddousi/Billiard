@@ -1,16 +1,14 @@
-.header {
-    width: 100%;
+.header1 {
+    width: 100vw;
     border: 1px solid black;
-    
-    ;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 20px 50px;
 }
 
-.header div {
+.header1 div {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -18,43 +16,42 @@
     gap: 10px;
 }
 
-.header div span {
+.header1 div span {
     font-size: 22px;
     color: whitesmoke;
     cursor: pointer;
 }
 
-.header div h2{
+.header1 div h2 {
     margin: 10px;
     font-size: 27px;
     color: whitesmoke;
 }
 
-.header button {
+.header1 button {
     padding: 10px 20px;
     font-weight: bold;
     border: none;
-    background-color: #F7BB26;
+    background-color: #f7bb26;
     transition: all 0.2s ease;
     cursor: pointer;
     font-size: 17px;
 }
 
-.header button:hover {
+.header1 button:hover {
     background-color: whitesmoke;
 }
 
-@media (max-width:768px) {
-  
-    .header {
+@media (max-width: 768px) {
+    .header1 {
         flex-direction: column;
         gap: 20px;
     }
 
-    .header div span {
+    .header1 div span {
         display: none;
     }
-  }
-  .header ul a{
+}
+.header1 ul a {
     color: aliceblue;
-  }
+}

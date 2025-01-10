@@ -31,7 +31,6 @@ const Timer = ({ price, table, description, startTime }) => {
             var div = document.querySelector(
                 `#table${table} .image-container .overlay`
             );
-            console.log(div);
             div.style.backgroundColor = "rgba(0, 0, 0, 0)";
         }
     }, []);
@@ -58,7 +57,6 @@ const Timer = ({ price, table, description, startTime }) => {
             overlayDiv.style.backgroundColor = "rgba(0, 0, 0, 0.6)";
             const cost = Math.floor(timeSpent * price);
             setCost((prevCost) => prevCost + cost);
-            console.log(JSON.parse(localStorage.getItem(table)));
             localStorage.removeItem(table);
         } else {
             overlayDiv.style.backgroundColor = "rgba(0, 0, 0, 0)";

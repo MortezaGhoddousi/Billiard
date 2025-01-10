@@ -19,7 +19,7 @@ function CMSHeader() {
     };
 
     return (
-        <section className="header">
+        <section className="header1">
             <div>
                 <h2>به صفحه ادمین خوش آمدید.</h2>
             </div>

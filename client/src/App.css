@@ -17,14 +17,21 @@
     background: #fab811;
 }
 
-/* Firefox Scrollbar */
 html {
-    scrollbar-width: thin; /* Options: auto, thin */
-    scrollbar-color: #f7bb26 black; /* Handle color and track color */
+    scrollbar-width: thin;
+    scrollbar-color: #f7bb26 black;
+}
+
+@font-face {
+    font-family: "BLotus";
+    src: url("./fonts/BLotus.eot");
+    src: url("./fonts/BLotus.woff") format("woff"),
+        url("./fonts/BLotus.ttf") format("truetype");
 }
 
 body {
     overflow-x: hidden;
+    font-family: BLotus, serif;
 }
 
 .App {
