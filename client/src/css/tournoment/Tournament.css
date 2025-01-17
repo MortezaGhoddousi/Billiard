@@ -22,26 +22,12 @@
 }
 
 .round {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  grid-gap: 15px;
-}
-
-.round-1 {
-  grid-template-rows: repeat(var(--number), 1fr);
-}
-
-.round-2 {
-  grid-template-rows: repeat(var(--number) / 2, 1fr);
-}
-
-.semi-finals {
-  grid-template-rows: repeat(var(--number) / 4, 1fr);
-}
-
-.final {
-  grid-template-rows: repeat(var(--number) / 8, 1fr);
+  gap: 15px;
+  margin-top: 80px;
 }
 
 .match {
@@ -105,7 +91,7 @@ section {
 }
 
 #result {
-  background-color: var(--secbg);
+  background-color: aliceblue;
   border-radius: 7px;
   width: 70px;
   height: 50px;
@@ -154,7 +140,15 @@ section {
   height: 100vh;
   padding: 10px;
   box-sizing: border-box;
-  background: linear-gradient(180deg, #1e1e2f, #423512);
+  background: linear-gradient(270deg, #141e30, #243b55);
+  background-size: 400% 400%;
+  animation: animate-bg 6s ease infinite;
+}
+
+@keyframes animate-bg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .round {
@@ -191,15 +185,6 @@ section {
 .match.winner {
   background-color: var(--highlight);
   border: 1px solid var(--highlight);
-}
-
-.profile {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--highlight);
-  transition: all 0.3s ease;
 }
 
 .profile.winner {

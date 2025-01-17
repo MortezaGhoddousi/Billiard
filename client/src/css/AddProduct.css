@@ -5,8 +5,10 @@
     justify-content: center;
     background-color: #000000;
     padding: 20px 60px;
-    margin-bottom: 40px;
+    margin-bottom: 10px;
     border: 1px solid #404040;
+    border-radius: 10px;
+    height: 100%;
 }
 
 form {
@@ -27,6 +29,7 @@ form h1 {
 form input:not([type="submit"]) {
     padding: 10px;
     border: 1px solid #404040;
+    border-radius: 10px;
     background-color: #000000;
     outline: none;
     width: 270px;
@@ -34,16 +37,16 @@ form input:not([type="submit"]) {
     color: whitesmoke;
 }
 
-form input[type=submit] {
-    
+form input[type="submit"] {
     padding: 10px 20px;
     font-weight: bold;
     border: none;
-    background-color: #F7BB26;
+    border-radius: 10px;
+    background-color: #f7bb26;
     transition: all 0.2s ease;
     cursor: pointer;
 }
 
-form input[type=submit]:hover {
+form input[type="submit"]:hover {
     background-color: whitesmoke;
 }

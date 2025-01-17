@@ -5,17 +5,12 @@ aside {
     align-items: center;
     gap: 40px;
     padding: 30px;
-    width: 350px;
-    background-color: #222222
-    ;
-}
-
-aside img {
-    width: 200px;
+    width: 400px;
+    background-color: #222222;
 }
 
 aside h1 {
-    color: #F7BB26;
+    color: #f7bb26;
     width: 100%;
     text-align: right;
     font-size: 25px;
@@ -26,37 +21,54 @@ aside ul {
     list-style-type: none;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 25px;
     width: 100%;
     text-align: right;
 }
 
 aside ul li {
+    position: relative;
     text-decoration: none;
     font-size: 18px;
     color: whitesmoke;
     cursor: pointer;
     transition: all 0.4s ease;
+    width: 50px;
 }
 
 aside ul li:hover {
-    transform: scale(1.05);
     text-decoration: underline;
-    color: whitesmoke; 
+    color: whitesmoke;
     text-decoration: none;
 }
 
 aside ul li:focus {
-    color: whitesmoke; 
+    color: whitesmoke;
     text-decoration: none;
 }
 
-@media (max-width:768px) {
-  
+.dropdown {
+    position: absolute;
+    top: 50%;
+    left: -220px;
+    background-color: #222222;
+    border: 1px solid #ddd;
+    padding: 5px 0;
+    display: block;
+    width: 200px;
+}
+
+.dropdown li {
+    padding: 8px 16px;
+    cursor: pointer;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
     aside {
-      width: 100%;
-      margin-bottom: 40px;
+        width: 100%;
+        margin-bottom: 40px;
     }
 
     aside h1 {
@@ -67,4 +79,3 @@ aside ul li:focus {
         align-items: center;
     }
 }
-

@@ -7,6 +7,7 @@ import reservationRouter from "./apiRouter/reserveRouter.mjs";
 import tableRouter from "./apiRouter/tableRouter.mjs";
 import TournamentsRouter from "./apiRouter/tournamentRouter.mjs";
 import sessionRouter from "./apiRouter/sessionRouter.mjs";
+import logRouter from "./apirouter/logRouter.mjs";
 import cors from "cors";
 import routerVerify from "./apiRouter/verifyRouter.mjs";
 import cookieParser from "cookie-parser";
@@ -18,9 +19,15 @@ app.use(express.json());
 
 app.use(cookieParser());
 
+// app.get("/login", (req, res) => {
+//     res.redirect("http://localhost:3000/login");
+// });
+
 app.use(
     cors({
         origin: "http://localhost:3000",
+        optionsSuccessStatus: 200,
+        credentials: true,
     })
 );
 
@@ -32,6 +39,7 @@ app.use("/api/table", tableRouter);
 app.use("/api/tour", TournamentsRouter);
 app.use("/api", sessionRouter);
 app.use("/api/cms", routerVerify);
+app.use("/api/log", logRouter);
 
 const port = 8000;
 app.listen(port, () => {
