@@ -62,7 +62,7 @@ const Timer = ({ price, table, description, startTime }) => {
             var date = t.toISOString().split("T")[0];
             var time = t.toTimeString().split(" ")[0];
             var dateTime = `${date} ${time}`;
-            const logData = { table, Cost: Cost + cost, dateTime };
+            const logData = { table, Cost: Cost + cost, dateTime, description };
             axios.post("http://localhost:8000/api/log/table/", logData);
             localStorage.removeItem(table);
         } else {

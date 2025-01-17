@@ -443,16 +443,20 @@ const verifyUser = (req, res, next) => {
 function addTableLog(data) {
     return new Promise((resolve, reject) => {
         const query =
-            'INSERT INTO tableLog(id, "table", price, time) VALUES (?, ?, ?, ?)';
+            'INSERT INTO tableLog(id, "table", price, time, type) VALUES (?, ?, ?, ?, ?)';
         const id = Date.now();
 
-        db.run(query, [id, data.table, data.Cost, data.dateTime], (err) => {
-            if (err) {
-                console.error("Error inserting log data:", err);
-                return reject(err);
+        db.run(
+            query,
+            [id, data.table, data.Cost, data.dateTime, data.description],
+            (err) => {
+                if (err) {
+                    console.error("Error inserting log data:", err);
+                    return reject(err);
+                }
+                resolve("Log data inserted successfully");
             }
-            resolve("Log data inserted successfully");
-        });
+        );
     });
 }
 
