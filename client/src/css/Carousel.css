@@ -16,10 +16,9 @@
 }
 
 .carousel-indicators .active {
-    background-color: #F7BB26;
+    background-color: #f7bb26;
 }
 
 .carousel .glyphicon {
     display: none;
 }
-
