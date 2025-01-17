@@ -25,15 +25,15 @@ function CMS() {
     }, []);
 
     function getLi(id) {
-        if (id === "add") {
+        if (id === "addShop") {
             setCom(<AddProduct />);
-        } else if (id === "update") {
+        } else if (id === "updateShop") {
             setCom(<UpdateProduct />);
-        } else if (id === "delete") {
+        } else if (id === "deleteShop") {
             setCom(<RemoveProduct />);
         } else if (id === "tournament") {
             setCom(<TournamentCMS />);
-        } else if (id === "price") {
+        } else if (id === "tablePrice") {
             setCom(<CMSTables />);
         }
     }
