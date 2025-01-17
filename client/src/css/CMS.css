@@ -14,7 +14,8 @@
     gap: 40px;
     align-items: center;
     width: 100vw;
-    border-radius: 10px;
+    height: auto;
+    background: linear-gradient(45deg, #121212, #1a1a1a);
 }
 
 @media (max-width: 768px) {
