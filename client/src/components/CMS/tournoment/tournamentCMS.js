@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // استفاده از useNavigate به جای useHistory
+import { useNavigate } from 'react-router-dom';
+import "../../../css/tournomentCMS.css" // استفاده از useNavigate به جای useHistory
 
 function CMSTournament() {
   const [tournament, setTournament] = useState({

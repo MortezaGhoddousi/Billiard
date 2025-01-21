@@ -1,0 +1,66 @@
+.tournament-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #000000;
+    padding: 20px 60px;
+    margin-bottom: 10px;
+    border: 1px solid #404040;
+    border-radius: 10px;
+    height: 100%;
+}
+
+.tournament-form form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.tournament-form form h1 {
+    margin: 0;
+    font-size: 30px;
+    color: #f7bb26; /* رنگ متفاوت برای عنوان */
+}
+
+.tournament-form form input:not([type="submit"]) {
+    padding: 10px;
+    border: 1px solid #404040;
+    border-radius: 10px;
+    background-color: #000000;
+    outline: none;
+    width: 270px;
+    font-weight: bold;
+    color: whitesmoke;
+}
+
+.tournament-form form input[type="number"] {
+    width: 100px; /* سایز کوچکتر برای عدد */
+    text-align: center;
+}
+
+.tournament-form form .player-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%; /* تمام عرض فرم */
+}
+
+.tournament-form form input[type="submit"] {
+    padding: 10px 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: #f7bb26;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.tournament-form form input[type="submit"]:hover {
+    background-color: whitesmoke;
+    color: #000000; /* تغییر رنگ متن در حالت هاور */
+}
