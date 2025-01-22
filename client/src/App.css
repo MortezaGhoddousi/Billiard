@@ -32,6 +32,7 @@ html {
 body {
     overflow-x: hidden;
     font-family: BLotus, serif;
+    
 }
 
 .App {
@@ -76,3 +77,4 @@ body {
         transform: rotate(360deg);
     }
 }
+
