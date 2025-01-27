@@ -21,11 +21,11 @@ function Tables({ children }) {
                     return (
                         <div
                             className="option"
-                            id={`table${table.table}`}
+                            id={`table${table.id}`}
                             key={table.id}
                         >
                             <div className="image-container">
-                                <h1>{table.id}</h1>
+                                <h1>{table.table}</h1>
                                 <img src="./images/snooker.webp" alt="" />
                                 <div className="overlay"></div>
                             </div>
@@ -52,11 +52,11 @@ function Tables({ children }) {
                     return (
                         <div
                             className="option"
-                            id={`table${table.table}`}
+                            id={`table${table.id}`}
                             key={table.id}
                         >
                             <div className="image-container">
-                                <h1>{table.id}</h1>
+                                <h1>{table.table}</h1>
                                 <img src="./images/billiard.jpg" alt="" />
                                 <div className="overlay"></div>
                             </div>

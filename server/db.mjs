@@ -333,29 +333,20 @@ function deletetable(id) {
     });
 }
 // update table
-function updatetable(id, tableNumber, pricePerHour, description, status) {
+function updatetable(data, description) {
     return new Promise((resolve, reject) => {
-        var checkQuery =
-            "SELECT * FROM tables WHERE tablNumber = ? AND id != ?";
-        db.get(checkQuery, [tableNumber, id], (err, row) => {
+        if (description === "snooker") {
+            var checkQuery =
+                "UPDATE tables SET pricePerHour=? WHERE tableNumber=? AND description='snooker'";
+        } else {
+            var checkQuery =
+                "UPDATE tables SET pricePerHour=? WHERE tableNumber=? AND description='pocket'";
+        }
+        db.run(checkQuery, [data.price, data.id], (err) => {
             if (err) {
                 reject(err);
-            } else if (row) {
-                resolve({ err: "this data already exists" });
             } else {
-                var updatecomp =
-                    "var checkQuery = SELECT * FROM tables WHERE table_number =? AND status =? AND price_per_hour =? decsription =?  AND id !=?";
-                db.run(
-                    updatecomp,
-                    [id, tableNumber, pricePerHour, description, status],
-                    (err) => {
-                        if (err) {
-                            reject(err);
-                        } else {
-                            resolve({ message: "Update successful" });
-                        }
-                    }
-                );
+                resolve(true);
             }
         });
     });

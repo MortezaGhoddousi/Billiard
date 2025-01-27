@@ -29,9 +29,9 @@ function App() {
                         setSnooker((prevSnooker) => [
                             ...prevSnooker,
                             {
-                                id: element.tableNumber,
+                                id: element.id,
                                 price: element.pricePerHour,
-                                table: element.id,
+                                table: element.tableNumber,
                                 description: element.description,
                             },
                         ]);
@@ -39,9 +39,9 @@ function App() {
                         setBilliard((prevBilliard) => [
                             ...prevBilliard,
                             {
-                                id: element.tableNumber,
+                                id: element.id,
                                 price: element.pricePerHour,
-                                table: element.id,
+                                table: element.tableNumber,
                                 description: element.description,
                             },
                         ]);
@@ -70,7 +70,7 @@ function App() {
                         <Route path="/cms/admin" element={<CMS />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/tournament" element={<Apptor />} />
-                        <Route path="/News" element={<News />} />
+                        <Route path="/news" element={<News />} />
                         <Route path="/tables" element={<TableShow />} />
                     </Routes>
                 </nameContext.Provider>

@@ -1,4 +1,3 @@
-
 import express from "express";
 import {
     gettable,
@@ -55,15 +54,29 @@ tableRouter.delete("/:id", (req, res) => {
         .catch((err) => res.status(500).send({ ERROR: err }));
 });
 // updatetable
-tableRouter.put("/:id", (req, res) => {
-    updatetable(req.params.id, req.body.role)
+tableRouter.put("/snooker", (req, res) => {
+    console.log(req.body);
+    updatetable(req.body, "snooker")
         .then((result) => {
             if (result) {
                 res.status(200).send({ STATUS: "Data updated successfully" });
             } else {
-                res.status(404).send({ ERROR: "Phone not found for updating" });
+                res.status(404).send({ ERROR: "table not found for updating" });
             }
         })
         .catch((err) => res.status(500).send({ ERROR: err }));
 });
+
+tableRouter.put("/pocket", (req, res) => {
+    updatetable(req.body, "pocket")
+        .then((result) => {
+            if (result) {
+                res.status(200).send({ STATUS: "Data updated successfully" });
+            } else {
+                res.status(404).send({ ERROR: "table not found for updating" });
+            }
+        })
+        .catch((err) => res.status(500).send({ ERROR: err }));
+});
+
 export default tableRouter;
