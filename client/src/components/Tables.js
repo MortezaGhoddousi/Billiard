@@ -16,7 +16,7 @@ function Tables({ children }) {
             <h1>میزها</h1>
             <div className="snooker">
                 {snooker.map((table) => {
-                    const localData = getLocalStorageData(table.table);
+                    const localData = getLocalStorageData(table.id);
 
                     return (
                         <div
@@ -40,6 +40,7 @@ function Tables({ children }) {
                                 startTime={
                                     localData ? localData.startTime : null
                                 }
+                                id={table.id}
                             />
                         </div>
                     );
@@ -47,7 +48,7 @@ function Tables({ children }) {
             </div>
             <div className="billiard">
                 {billiard.map((table) => {
-                    const localData = getLocalStorageData(table.table);
+                    const localData = getLocalStorageData(table.id);
 
                     return (
                         <div
@@ -71,6 +72,7 @@ function Tables({ children }) {
                                 startTime={
                                     localData ? localData.startTime : null
                                 }
+                                id={table.id}
                             />
                         </div>
                     );
