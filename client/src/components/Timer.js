@@ -9,26 +9,29 @@ const Timer = ({ price, table, description, startTime }) => {
     const [totalTime, setTotalTime] = useState(0);
     const [prices, setPrices] = useState([]);
 
+    const calTime = function (st) {
+        const [hours, minutes, seconds] = st.split(":").map(Number);
+
+        const now = new Date();
+        const startDateTime = new Date();
+        startDateTime.setHours(hours, minutes, seconds);
+
+        const diffMs = now - startDateTime;
+
+        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+        const diffMinutes = Math.floor(
+            (diffMs % (1000 * 60 * 60)) / (1000 * 60)
+        );
+        const diffSeconds = Math.floor((diffMs % (1000 * 60)) / 1000);
+
+        setTimeSpent(diffHours * 3600 + diffMinutes * 60 + diffSeconds);
+        setTotalTime(diffHours * 3600 + diffMinutes * 60 + diffSeconds);
+    };
+
     useEffect(() => {
         if (startTime != null) {
-            const [hours, minutes, seconds] = startTime.split(":").map(Number);
-
-            const now = new Date();
-            const startDateTime = new Date();
-            startDateTime.setHours(hours, minutes, seconds);
-
-            const diffMs = now - startDateTime;
-
-            const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
-            const diffMinutes = Math.floor(
-                (diffMs % (1000 * 60 * 60)) / (1000 * 60)
-            );
-            const diffSeconds = Math.floor((diffMs % (1000 * 60)) / 1000);
-
-            setTimeSpent(diffHours * 3600 + diffMinutes * 60 + diffSeconds);
-            setTotalTime(diffHours * 3600 + diffMinutes * 60 + diffSeconds);
+            calTime(startTime);
             setIsActive(!isActive);
-
             var div = document.querySelector(
                 `#table${table} .image-container .overlay`
             );
@@ -41,8 +44,13 @@ const Timer = ({ price, table, description, startTime }) => {
 
         if (isActive) {
             interval = setInterval(() => {
-                setTimeSpent((prevTime) => prevTime + 1);
-                setTotalTime((prevTotal) => prevTotal + 1);
+                const getLocalStorageData = (key) => {
+                    const storedData = localStorage.getItem(key);
+                    return storedData ? JSON.parse(storedData) : null;
+                };
+                const localData = getLocalStorageData(table);
+                var st = localData ? localData.startTime : null;
+                calTime(st);
             }, 1000);
         } else if (!isActive && timeSpent !== 0) {
             clearInterval(interval);
