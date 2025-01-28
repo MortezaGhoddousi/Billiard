@@ -5,7 +5,7 @@ aside.sideBar {
     align-items: center;
     gap: 40px;
     padding: 30px;
-    width: 400px;
+    width: 40vw;
     background-color: #222222;
 }
 
@@ -17,7 +17,7 @@ aside.sideBar h1 {
     margin: 0;
 }
 
-aside.sideBar ul {
+aside.sideBar > ul {
     list-style-type: none;
     display: flex;
     flex-direction: column;
@@ -27,23 +27,23 @@ aside.sideBar ul {
     text-align: right;
 }
 
-aside.sideBar ul li {
+aside.sideBar > ul > li {
     position: relative;
     text-decoration: none;
     font-size: 18px;
     color: whitesmoke;
     cursor: pointer;
     transition: all 0.4s ease;
-    width: 50px;
+    width: 100px;
 }
 
-aside .sideBarul li:hover {
+aside.sideBar > ul li:hover {
     text-decoration: underline;
     color: whitesmoke;
     text-decoration: none;
 }
 
-aside.sideBar ul li:focus {
+aside.sideBar > ul li:focus {
     color: whitesmoke;
     text-decoration: none;
 }
@@ -51,18 +51,18 @@ aside.sideBar ul li:focus {
 .dropdown {
     position: absolute;
     top: 50%;
-    left: -220px;
+    right: 7vw;
     background-color: #222222;
     border: 1px solid #ddd;
     padding: 5px 0;
     display: block;
-    width: 200px;
+    width: 20vw;
 }
 
 .dropdown li {
     padding: 8px 16px;
     cursor: pointer;
-    width: 100%;
+    width: 150px;
 }
 
 @media (max-width: 768px) {
