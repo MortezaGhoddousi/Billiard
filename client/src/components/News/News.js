@@ -12,15 +12,17 @@ function News() {
     }, []);
 
     return (
-        <div className="news-container">
+        <>
             <Header />
-            <Routes>
-                <Route path="/" element={<Content />} />
-                <Route path="/" element={<News />} />
-                <Route path="/news/:id" element={<NewsDetails />} />
-            </Routes>
+            <div className="news-container">
+                <Routes>
+                    <Route path="/" element={<Content />} />
+                    <Route path="/" element={<News />} />
+                    <Route path="/news/:id" element={<NewsDetails />} />
+                </Routes>
+            </div>
             <Footer />
-        </div>
+        </>
     );
 }
 

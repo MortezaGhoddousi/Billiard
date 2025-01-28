@@ -1,5 +1,6 @@
-
-.news-conteiner {
-    background-color: black;
+.news-container {
+    background-color: transparent;
     color: white;
+    margin-top: 0;
+    padding-top: 0;
 }

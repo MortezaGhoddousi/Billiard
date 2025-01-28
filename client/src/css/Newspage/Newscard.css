@@ -2,10 +2,9 @@
     padding: 20px;
     width: 80%;
     max-width: 90%;
-    margin: 20px auto;
-    background-color: black;
+    margin: 0px auto;
+    background-color: transparent;
     color: aliceblue;
-    margin-top: 90px auto;
     display: flex;
     flex-direction: column;
 }
