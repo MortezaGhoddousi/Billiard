@@ -41,7 +41,7 @@ function CMSTable() {
     }
 
     return (
-        <>
+        <div className="cmsTableContainer">
             <section className="edit">
                 <form onSubmit={handleSnookerSubmit}>
                     <h1> میزهای اسنوکر</h1>
@@ -90,7 +90,7 @@ function CMSTable() {
                     <input type="submit" value="ثبت" />
                 </form>
             </section>
-        </>
+        </div>
     );
 }
 

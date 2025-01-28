@@ -1,4 +1,4 @@
-aside {
+aside.sideBar {
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -9,7 +9,7 @@ aside {
     background-color: #222222;
 }
 
-aside h1 {
+aside.sideBar h1 {
     color: #f7bb26;
     width: 100%;
     text-align: right;
@@ -17,7 +17,7 @@ aside h1 {
     margin: 0;
 }
 
-aside ul {
+aside.sideBar ul {
     list-style-type: none;
     display: flex;
     flex-direction: column;
@@ -27,7 +27,7 @@ aside ul {
     text-align: right;
 }
 
-aside ul li {
+aside.sideBar ul li {
     position: relative;
     text-decoration: none;
     font-size: 18px;
@@ -37,13 +37,13 @@ aside ul li {
     width: 50px;
 }
 
-aside ul li:hover {
+aside .sideBarul li:hover {
     text-decoration: underline;
     color: whitesmoke;
     text-decoration: none;
 }
 
-aside ul li:focus {
+aside.sideBar ul li:focus {
     color: whitesmoke;
     text-decoration: none;
 }
@@ -66,16 +66,16 @@ aside ul li:focus {
 }
 
 @media (max-width: 768px) {
-    aside {
+    aside.sideBar {
         width: 100%;
         margin-bottom: 40px;
     }
 
-    aside h1 {
+    aside.sideBar h1 {
         text-align: center;
     }
 
-    aside ul {
+    aside.sideBar ul {
         align-items: center;
     }
 }

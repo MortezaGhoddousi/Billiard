@@ -33,7 +33,7 @@ function Header() {
     }, []);
 
     return (
-        <header className="header.news">
+        <header className="header-news">
             <div>
                 <h1>لوگو.</h1>
                 <i className="bx bx-menu" onClick={toggleMenu}></i>

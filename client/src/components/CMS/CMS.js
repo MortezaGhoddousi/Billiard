@@ -16,55 +16,55 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 function CMS() {
-  const [com, setCom] = useState(null);
+    const [com, setCom] = useState(null);
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/user/login/current")
-      .then((result) => {
-        if (result.data == "Unauthorized User!") {
-          window.location.href = "/login";
+    useEffect(() => {
+        axios
+            .get("http://localhost:8000/api/user/login/current")
+            .then((result) => {
+                if (result.data === "Unauthorized User!") {
+                    window.location.href = "/login";
+                }
+            })
+            .catch((err) => console.log(err));
+    }, []);
+
+    function getLi(id) {
+        if (id === "addShop") {
+            setCom(<AddProduct />);
+        } else if (id === "updateShop") {
+            setCom(<UpdateProduct />);
+        } else if (id === "deleteShop") {
+            setCom(<RemoveProduct />);
+        } else if (id === "tournament") {
+            setCom(<TournamentCMS />);
+        } else if (id === "deleteTournament") {
+            setCom(<Deletet />);
+        } else if (id === "updateTournament") {
+            setCom(<EditTournoment />);
+        } else if (id === "tablePrice") {
+            setCom(<CMSTables />);
+        } else if (id === "addNews") {
+            setCom(<NewsCMS />);
+        } else if (id === "UpdateNews") {
+            setCom(<Update />);
+        } else if (id === "deleteNews") {
+            setCom(<Delete />);
         }
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  function getLi(id) {
-    if (id === "addShop") {
-      setCom(<AddProduct />);
-    } else if (id === "updateShop") {
-      setCom(<UpdateProduct />);
-    } else if (id === "deleteShop") {
-      setCom(<RemoveProduct />);
-    } else if (id === "tournament") {
-      setCom(<TournamentCMS />);
-    } else if (id === "deleteTournament") {
-      setCom(<Deletet />);
-    } else if (id === "updateTournament") {
-      setCom(<EditTournoment />);
-    } else if (id === "tablePrice") {
-      setCom(<CMSTables />);
-    } else if (id === "addNews") {
-      setCom(<NewsCMS />);
-    } else if (id === "UpdateNews") {
-      setCom(<Update />);
-    } else if (id === "deleteNews") {
-      setCom(<Delete />);
     }
-  }
 
-  return (
-    <>
-      <Header />
-      <div className="main">
-        <article>
-          <CMSHeader />
-          {com}
-        </article>
-        <SideBar getLi={getLi} />
-      </div>
-    </>
-  );
+    return (
+        <>
+            <Header />
+            <div className="main">
+                <article className="cms-container">
+                    <CMSHeader />
+                    {com}
+                </article>
+                <SideBar getLi={getLi} />
+            </div>
+        </>
+    );
 }
 
 export default CMS;

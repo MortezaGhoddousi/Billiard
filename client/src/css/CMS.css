@@ -7,7 +7,7 @@
     padding-top: 15vh;
 }
 
-.main article {
+.main article.cms-container {
     display: flex;
     flex-direction: column;
     justify-content: start;

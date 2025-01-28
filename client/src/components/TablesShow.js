@@ -23,11 +23,11 @@ function TableShow() {
     }, []);
 
     return (
-        <>
+        <div className="tableContainer">
             <Header />
             <Tables />
             <Footer />
-        </>
+        </div>
     );
 }
 

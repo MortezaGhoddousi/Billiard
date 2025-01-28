@@ -1,6 +1,5 @@
 import "./App.css";
 import Home from "./components/Home";
-import TablesShow from "./components/TablesShow";
 import Shop from "./components/Shop";
 import CMS from "./components/CMS/CMS";
 import Login from "./components/login/Login";
@@ -17,6 +16,19 @@ export const nameContext = createContext();
 function App() {
     const [snooker, setSnooker] = useState([]);
     const [billiard, setBilliard] = useState([]);
+
+    useEffect(() => {
+        const linkElement = document.createElement("link");
+        linkElement.rel = "stylesheet";
+        linkElement.href =
+            "../public/bootstrap-3.4.1-dist/css/bootstrap.min.css";
+
+        document.head.appendChild(linkElement);
+
+        return () => {
+            document.head.removeChild(linkElement);
+        };
+    }, []);
 
     useEffect(() => {
         const getTables = async () => {

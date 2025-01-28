@@ -1,46 +1,79 @@
+import { useEffect, useState } from "react";
 import "../css/Carousel.css";
+
 function Carousel() {
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const slides = [
+        "./images/1.jpg",
+        "./images/2.jpg",
+        "./images/6.jpg",
+        "./images/7.jpg",
+        "./images/8.jpg",
+    ];
+
+    const updateCarousel = (index) => {
+        if (index < 0) {
+            setCurrentIndex(slides.length - 1);
+        } else if (index >= slides.length) {
+            setCurrentIndex(0);
+        } else {
+            setCurrentIndex(index);
+        }
+    };
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            updateCarousel(currentIndex + 1);
+        }, 10000);
+
+        return () => clearInterval(interval);
+    }, [currentIndex]);
+
     return (
         <section id="home">
-            <div className="carousel slide" id="myslider" data-ride="carousel">
-                <ol className="carousel-indicators">
-                    <li data-target="#myslider" data-slide-to="0"></li>
-                    <li data-target="#myslider" data-slide-to="1"></li>
-                    <li data-target="#myslider" data-slide-to="2"></li>
-                    <li data-target="#myslider" data-slide-to="3"></li>
-                    <li data-target="#myslider" data-slide-to="4"></li>
-                </ol>
-                <div className="carousel-inner">
-                    <div className="item active">
-                        <img src="./images/1.jpg" alt="" />
-                    </div>
-                    <div className="item">
-                        <img src="./images/2.jpg" alt="" />
-                    </div>
-                    <div className="item">
-                        <img src="./images/6.jpg" alt="" />
-                    </div>
-                    <div className="item">
-                        <img src="./images/7.jpg" alt="" />
-                    </div>
-                    <div className="item">
-                        <img src="./images/8.jpg" alt="" />
-                    </div>
+            <div className="carousel" id="myslider">
+                <div
+                    className="carousel-inner"
+                    style={{
+                        transform: `translateX(${currentIndex * 100}%)`,
+                        transition: "transform 0.5s ease-in-out",
+                    }}
+                >
+                    {slides.map((slide, index) => (
+                        <div
+                            className={`carousel-item ${
+                                index === currentIndex ? "active" : ""
+                            }`}
+                            key={index}
+                        >
+                            <img src={slide} alt={`Slide ${index + 1}`} />
+                        </div>
+                    ))}
                 </div>
-                <a
-                    href="#myslider"
-                    className="left carousel-control"
-                    data-slide="prev"
+
+                <button
+                    className="carousel-control left"
+                    onClick={() => updateCarousel(currentIndex - 1)}
                 >
-                    <span className="glyphicon glyphicon-chevron-left"></span>
-                </a>
-                <a
-                    href="#myslider"
-                    className="right carousel-control"
-                    data-slide="next"
+                    &#10095;
+                </button>
+                <button
+                    className="carousel-control right"
+                    onClick={() => updateCarousel(currentIndex + 1)}
                 >
-                    <span className="glyphicon glyphicon-chevron-right"></span>
-                </a>
+                    &#10094;
+                </button>
+
+                <div className="carousel-indicators">
+                    {slides.map((_, index) => (
+                        <span
+                            key={index}
+                            className={index === currentIndex ? "active" : ""}
+                            onClick={() => updateCarousel(index)}
+                        ></span>
+                    ))}
+                </div>
             </div>
         </section>
     );
