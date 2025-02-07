@@ -55,7 +55,7 @@ function CMS() {
 
     return (
         <>
-            <Header />
+            <Header navActive={{ cms: true }} />
             <div className="main">
                 <article className="cms-container">
                     <CMSHeader />

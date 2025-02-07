@@ -4,9 +4,13 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Intro from "./Intro";
+import People from "./Peaple";
 
 function Home() {
     const navigate = useNavigate();
+
+    const people = 10;
 
     useEffect(() => {
         navigate("/");
@@ -17,8 +21,10 @@ function Home() {
     }, []);
     return (
         <>
-            <Header />
+            <Header navActive={{ home: true }} />
+            <Intro peaple={people} />
             <Carousel />
+            <People />
             <Footer />
         </>
     );

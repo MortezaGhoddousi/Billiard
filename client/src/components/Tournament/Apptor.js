@@ -6,7 +6,7 @@ function Apptor() {
     return (
         <>
             <div className="news-container">
-                <Header />
+                <Header navActive={{ tournament: true }} />
                 <RegistrationForm />
                 <Routes>
                     <Route path="12" element={<RegistrationForm />} />

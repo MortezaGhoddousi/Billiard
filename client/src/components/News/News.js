@@ -13,7 +13,7 @@ function News() {
 
     return (
         <>
-            <Header />
+            <Header navActive={{ news: true }} />
             <div className="news-container">
                 <Routes>
                     <Route path="/" element={<Content />} />

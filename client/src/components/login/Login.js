@@ -31,8 +31,8 @@ function Login() {
 
     return (
         <>
-            <Header />
-            <div className="container">
+            <Header navActive={{ login: true }} />
+            <div className="login-container">
                 <section className="login">
                     <div className="image-container">
                         <img src="./images/login.jpg" alt="login" />

@@ -5,21 +5,28 @@
 }
 
 ::-webkit-scrollbar-track {
-    background: black;
+    background: #fff;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #fab811;
+    background: rgb(0 191 165);
     border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #fab811;
+    background: rgb(0 191 165);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
 }
 
 html {
     scrollbar-width: thin;
-    scrollbar-color: #f7bb26 black;
+    scrollbar-color: rgb(0 191 165) #fff;
+    scroll-behavior: smooth;
 }
 
 @font-face {
@@ -29,7 +36,156 @@ html {
         url("./fonts/BLotus.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "PeydaWeb Thin";
+    src: url("./fonts/PeydaWeb\ Thin.eot");
+    src: url("./fonts/PeydaWeb\ Thin.woff") format("woff"),
+        url("./fonts/PeydaWeb\ Thin.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "PeydaWeb";
+    src: url("./fonts/PeydaWeb.eot");
+    src: url("./fonts/PeydaWeb.woff") format("woff"),
+        url("./fonts/PeydaWeb.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 body {
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    padding-top: 60px;
+    background: #fff;
+    color: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    direction: rtl;
+    scroll-behavior: smooth;
     overflow-x: hidden;
-    font-family: BLotus, serif;
+    font-family: "PeydaWeb", "PeydaWeb Thin", BLotus, serif;
+}
+
+section.intro {
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+        "r1c2 r123c1"
+        "r2c2 r123c1"
+        "r3c2 r123c1";
+}
+
+section.intro h1 {
+    grid-area: r1c2;
+    justify-self: start;
+    align-self: center;
+}
+
+section.intro h1 span {
+    color: rgb(0 191 165);
+}
+
+section.intro p:nth-child(2) {
+    grid-area: r2c2;
+    justify-self: start;
+    align-self: start;
+}
+section.intro div {
+    width: 50%;
+    grid-area: r3c2;
+    justify-self: start;
+    align-self: start;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 20px;
+    transform: translateY(-30px);
+}
+
+section.intro img {
+    grid-area: r123c1;
+    width: 100%;
+    justify-self: center;
+    align-self: center;
+    border-radius: 20px;
+}
+
+section.people {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    /* width: 100vw; */
+    height: 30vh;
+    padding: 100px;
+    margin: 100px 0 250px;
+    background-color: rgb(229 249 246);
+}
+
+section.people h1 {
+    font-size: 42px;
+    font-weight: bold;
+}
+
+section.people main {
+    width: 90vw;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5vw;
+    padding: 10px;
+    transform: translateY(0vh);
+}
+
+section.people div.container {
+    justify-self: center;
+    align-self: center;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #111;
+    border-radius: 5px 5px 40px 5px;
+    height: 217px;
+}
+
+section.people div.card-item {
+    height: 100%;
+    padding: 5px;
+    justify-self: center;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+}
+
+section.people div h2 {
+    font-size: 14px;
+}
+
+section.people div aside {
+    align-self: start;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 10px;
+    width: auto;
+}
+
+section.people div aside i {
+    color: rgb(0 191 165);
 }

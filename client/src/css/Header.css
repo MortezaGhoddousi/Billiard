@@ -4,15 +4,19 @@ header.header-news {
     justify-content: space-between;
     align-items: center;
     padding: 6px 40px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
     z-index: 100;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
+    background-color: #fff;
+    color: #111;
+    height: 60px;
 }
 header.header-news h1 {
     margin: 10px;
+    color: rgb(0 191 165);
+    font-weight: 900;
 }
 
 header.header-news ul {
@@ -27,19 +31,23 @@ header.header-news ul li {
     font-size: 18px;
 }
 
+header.header-news ul li.active a {
+    color: rgb(0 191 165);
+}
+
 header.header-news ul li a {
-    color: aliceblue;
+    color: #111;
     text-decoration: none;
     transition: 0.2s all ease-in-out;
     font-weight: bold;
 }
 
 header.header-news ul li a:hover {
-    color: #f7bb26;
+    color: rgb(0 191 165);
     text-decoration: none;
 }
 header.header-news ul li a:focus {
-    color: #f7bb26;
+    color: rgb(0 191 165);
     text-decoration: none;
 }
 

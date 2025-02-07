@@ -24,7 +24,7 @@ function TableShow() {
 
     return (
         <div className="tableContainer">
-            <Header />
+            <Header navActive={{ tables: true }} />
             <Tables />
             <Footer />
         </div>

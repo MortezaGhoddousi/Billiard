@@ -29,12 +29,14 @@
 
 #tables .snooker .option,
 #tables .billiard .option {
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     gap: 10px;
-    border: 1px solid #404040;
+    background-color: #0c7e6e;
+    border: 2px solid 0c7e6e;
     width: 25vw;
     height: 75vh;
     padding: 5px;
@@ -46,14 +48,15 @@
     width: 100%;
     height: 100%;
     position: relative;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 #tables .snooker .option .image-container img,
 #tables .billiard .option .image-container img {
     width: 100%;
     height: 100%;
-    border-radius: 5px;
+    border-radius: 10px;
+    background: transparent;
 }
 
 #tables .snooker .option .image-container .overlay,
@@ -64,6 +67,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
 }
 
 #tables .snooker .option h1,
