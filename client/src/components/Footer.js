@@ -4,7 +4,7 @@ function Footer() {
     return (
         <footer id="contact">
             <div className="address">
-                <h1>لوگو.</h1>
+                <h1>اسنوکر آریامن</h1>
                 <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Sequi magnam ut atque quis quos et esse consequuntur,
