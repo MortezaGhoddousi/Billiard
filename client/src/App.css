@@ -155,6 +155,10 @@ section.people div.container {
     border: 1px solid #111;
     border-radius: 5px 5px 40px 5px;
     height: 217px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 section.people div.card-item {

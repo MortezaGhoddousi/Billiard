@@ -8,6 +8,7 @@ const Timer = ({ price, table, description, startTime, id }) => {
     const [Cost, setCost] = useState(0);
     const [totalTime, setTotalTime] = useState(0);
     const [prices, setPrices] = useState([]);
+    const [saveTime, setSaveTime] = useState("00: 00: 00");
 
     const calTime = function (st) {
         const [hours, minutes, seconds] = st.split(":").map(Number);
@@ -84,6 +85,8 @@ const Timer = ({ price, table, description, startTime, id }) => {
                     description: description,
                 })
             );
+            var sTime = `${time.getSeconds()}: ${time.getMinutes()}: ${time.getHours()}`;
+            setSaveTime(sTime);
         }
         setIsActive(!isActive);
     };
@@ -106,6 +109,7 @@ const Timer = ({ price, table, description, startTime, id }) => {
         setTotalTime(0);
         setCost(0);
         setPrices([]);
+        setSaveTime("00: 00: 00");
     };
 
     const cost = Math.floor(timeSpent * price);
@@ -135,6 +139,7 @@ const Timer = ({ price, table, description, startTime, id }) => {
                 <button onClick={handleReset}>ریست</button>
             </div>
             <div className="prices">
+                <p>ساعت باز شدن میز: {saveTime}</p>
                 <p>هزینه جاری : {cost} تومان</p>
                 {prs}
                 <p>هزینه کل : {Cost} تومان</p>
