@@ -1,13 +1,13 @@
-import '../../../css/CMSnews.css'; // فایل CSS برای استایل‌دهی
-import { useState } from 'react';
-import axios from 'axios';
+import "../../../css/CMSnews.css"; // فایل CSS برای استایل‌دهی
+import { useState } from "react";
+import axios from "axios";
 
 function NewsCMS() {
     const [newsData, setNewsData] = useState({
-        id: '', // شناسه خبر برای به‌روزرسانی
-        title: '', // عنوان جدید خبر
-        description: '', // توضیحات جدید خبر
-        imageUrl: '' // آدرس تصویر جدید
+        id: "", // شناسه خبر برای به‌روزرسانی
+        title: "", // عنوان جدید خبر
+        description: "", // توضیحات جدید خبر
+        imageUrl: "", // آدرس تصویر جدید
     });
 
     function handleChange(e) {
@@ -16,23 +16,27 @@ function NewsCMS() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        axios.put('http://localhost:8000/api/news/update/' + newsData.id, newsData)
+        axios
+            .put(
+                "http://localhost:8000/api/news/update/" + newsData.id,
+                newsData
+            )
             .then((response) => {
-                console.log('News updated successfully:', response.data);
+                console.log("News updated successfully:", response.data);
             })
             .catch((error) => {
-                console.error('Error updating news:', error);
+                console.error("Error updating news:", error);
             });
     }
 
     return (
-        <section className='edit-news'>
+        <section className="edit">
             <form onSubmit={handleSubmit}>
-                <h1>  خبر جدید</h1>
+                <h1> خبر جدید</h1>
                 <label>
                     <input
                         type="text"
-                        id='id'
+                        id="id"
                         value={newsData.id}
                         onChange={handleChange}
                         placeholder="شناسه خبر را وارد کنید"
@@ -41,7 +45,7 @@ function NewsCMS() {
                 <label>
                     <input
                         type="text"
-                        id='title'
+                        id="title"
                         value={newsData.title}
                         onChange={handleChange}
                         placeholder="عنوان  خبر را وارد کنید"
@@ -49,7 +53,7 @@ function NewsCMS() {
                 </label>
                 <label>
                     <textarea
-                        id='description'
+                        id="description"
                         value={newsData.description}
                         onChange={handleChange}
                         placeholder="توضیحات  خبر را وارد کنید"
@@ -58,7 +62,7 @@ function NewsCMS() {
                 <label>
                     <input
                         type="file"
-                        id='image'
+                        id="image"
                         value={newsData.imageUrl}
                         onChange={handleChange}
                         placeholder="آدرس تصویر  را وارد کنید"

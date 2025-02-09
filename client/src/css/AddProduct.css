@@ -3,12 +3,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-color: #000000;
+    background-color: #fff;
     padding: 20px 60px;
     margin-bottom: 10px;
-    border: 1px solid #404040;
+    border: 2px solid #0c7e6e;
     border-radius: 10px;
     height: 100%;
+    background-color: #0c7e6e;
     /* max-height: 65vh; */
 }
 
@@ -26,22 +27,29 @@
     gap: 10px;
     padding-top: 20px;
     padding-bottom: 20px;
+    background-color: transparent;
 }
 
 .edit form h1 {
     margin: 0;
     font-size: 30px;
+    color: #fff;
 }
 
-.edit form input:not([type="submit"]) {
+.edit form input:not([type="submit"]),
+.edit form textarea {
     padding: 10px;
-    border: 1px solid #404040;
+    border: 1px solid #ddd;
     border-radius: 10px;
-    background-color: #000000;
+    background-color: #fff;
     outline: none;
     width: 270px;
+}
+
+.edit form input::placeholder,
+.edit form textarea::placeholder {
+    color: rgb(0 191 165);
     font-weight: bold;
-    color: whitesmoke;
 }
 
 .edit form input[type="submit"] {
@@ -49,11 +57,14 @@
     font-weight: bold;
     border: none;
     border-radius: 10px;
-    background-color: #f7bb26;
+    background-color: rgb(0 191 165);
     transition: all 0.2s ease;
     cursor: pointer;
+    color: #fff;
+    font-size: 16px;
 }
 
 .edit form input[type="submit"]:hover {
-    background-color: whitesmoke;
+    background-color: #fff;
+    color: rgb(0 191 165);
 }

@@ -6,11 +6,11 @@ aside.sideBar {
     gap: 40px;
     padding: 30px;
     width: 40vw;
-    background-color: #222222;
+    background-color: #0c7e6e;
 }
 
 aside.sideBar h1 {
-    color: #f7bb26;
+    color: #fff;
     width: 100%;
     text-align: right;
     font-size: 25px;
@@ -31,7 +31,7 @@ aside.sideBar > ul > li {
     position: relative;
     text-decoration: none;
     font-size: 18px;
-    color: whitesmoke;
+    color: #fff;
     cursor: pointer;
     transition: all 0.4s ease;
     width: 100px;
@@ -39,12 +39,12 @@ aside.sideBar > ul > li {
 
 aside.sideBar > ul li:hover {
     text-decoration: underline;
-    color: whitesmoke;
+    color: #fff;
     text-decoration: none;
 }
 
 aside.sideBar > ul li:focus {
-    color: whitesmoke;
+    color: #fff;
     text-decoration: none;
 }
 
@@ -52,11 +52,13 @@ aside.sideBar > ul li:focus {
     position: absolute;
     top: 50%;
     right: 7vw;
-    background-color: #222222;
+    background-color: #fff;
     border: 1px solid #ddd;
     padding: 5px 0;
     display: block;
     width: 20vw;
+    color: rgb(0 191 165);
+    border-radius: 5px;
 }
 
 .dropdown li {

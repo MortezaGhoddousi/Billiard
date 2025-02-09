@@ -15,7 +15,7 @@
     align-items: center;
     width: 100vw;
     height: auto;
-    background: linear-gradient(45deg, #121212, #1a1a1a);
+    background: #fff;
 }
 
 @media (max-width: 768px) {
