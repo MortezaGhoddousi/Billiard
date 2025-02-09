@@ -5,7 +5,7 @@ import RegistrationForm from "./RegistrationForm";
 function Apptor() {
     return (
         <>
-            <div className="news-container">
+            <div className="tournament-container">
                 <Header navActive={{ tournament: true }} />
                 <RegistrationForm />
                 <Routes>

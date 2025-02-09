@@ -1,21 +1,27 @@
+.tournament-container {
+    height: 80vh;
+    padding: 10px 50px;
+}
+
 .registration-container {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     padding: 20px;
-    background: linear-gradient(135deg, #1e293b, #64748b);
-    color: #fff;
-    min-height: 100vh;
-    width: 100vw;
+    background: #fff;
+    color: #111;
+    height: 100%;
+    width: 100%;
 }
 
 .registration-form {
-    width: 40%;
-    background: rgba(255, 255, 255, 0.1);
+    width: auto;
+    background: #0c7e6e;
+    color: #fff;
     padding: 20px;
-    padding-top: 10vh;
+    /* padding-top: 10vh; */
     border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); */
 }
 
 .registration-form h2 {
@@ -38,46 +44,51 @@
     padding: 10px;
     border: none;
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
+    background: fff;
+    color: rgb(0 191 165);
     outline: none;
 }
 
 .form-group input::placeholder {
-    color: #d1d5db;
+    color: #0c7e6e;
     text-align: right;
+    font-weight: bold;
 }
 
 button {
     width: 33vw;
     padding: 12px;
-    background: #f97316;
-    color: white;
+    background: rgb(0 191 165);
+    color: #fff;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 19px;
+    font-weight: bold;
+    transition: 0.3s ease;
 }
 
 button:hover {
-    background: #ea580c;
+    background: #fff;
+    color: rgb(0 191 165);
 }
 
 .bank-card-container {
-    width: 50%;
+    width: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 10%;
 }
 
 .bank-card {
-    width: 400px;
-    height: 200px;
-    background: linear-gradient(135deg, #374151, #1f2937);
+    width: 450px;
+    height: 250px;
+    /* background: #0c7e6e; */
+    background-image: url(../../../public/images/MellatCard1401.jpg);
+    background-position: center;
+    background-size: cover;
     border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    color: white;
+    color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -93,19 +104,44 @@ button:hover {
     text-align: center;
     font-size: 20px;
     letter-spacing: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
 }
 
 .card-number {
     cursor: pointer;
     padding: 10px;
-    border: 2px dashed #64748b;
+    border: 2px dashed #111;
     border-radius: 10px;
-    transition: background 0.3s, transform 0.3s;
+    transition: 0.3s ease;
     text-align: center;
     direction: ltr;
+    font-weight: bold;
+    background-color: #fff;
+    color: #111;
+    /* transform: translateY(-95%); */
+    font-size: 22px;
+    letter-spacing: 5px;
+    width: 100%;
+}
+
+.card-name {
+    padding: 10px;
+    border: 2px dashed #111;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: bold;
+    background-color: #fff;
+    color: #111;
+    font-size: 16px;
+    width: 50%;
+    letter-spacing: 0;
 }
 
 .card-number:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
