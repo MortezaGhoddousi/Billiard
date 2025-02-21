@@ -12,7 +12,7 @@ function RemoveProduct() {
     function handleSubmit(e) {
         e.preventDefault();
         axios
-            .delete("http:localhost:8000/api/delete/" + id)
+            .delete("http://localhost:8000/api/delete/" + id)
             .then((result) => {
                 console.log(result);
             })

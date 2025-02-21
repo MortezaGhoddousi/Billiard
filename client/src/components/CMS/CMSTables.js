@@ -33,7 +33,7 @@ function CMSTable() {
     function handleBilliardSubmit(e) {
         e.preventDefault();
         axios
-            .put("http:localhost:8000/api/table/pocket", billiard)
+            .put("http://localhost:8000/api/table/pocket", billiard)
             .then((result) => {
                 console.log(result);
                 setBilliard({ id: "", price: "" });
