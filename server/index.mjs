@@ -11,6 +11,7 @@ import logRouter from "./apirouter/logRouter.mjs";
 import cors from "cors";
 import routerVerify from "./apiRouter/verifyRouter.mjs";
 import cookieParser from "cookie-parser";
+import 'dotenv/config;
 
 var app = express();
 
@@ -41,7 +42,7 @@ app.use("/api", sessionRouter);
 app.use("/api/cms", routerVerify);
 app.use("/api/log", logRouter);
 
-const port = 8000;
+const port = process.env.PORT || 8000;
 app.listen(port, () => {
     console.log(`server is running on port ${port}`);
 });
