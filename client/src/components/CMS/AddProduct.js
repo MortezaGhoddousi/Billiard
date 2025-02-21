@@ -20,7 +20,7 @@ function AddProduct() {
         e.preventDefault();
         setNewProduct({ ...newProduct, id: uuid() });
         axios
-            .post("https://billiard-server-puce.vercel.app/api/add", newProduct)
+            .post("http:localhost:8000/api/add", newProduct)
             .then((result) => {
                 console.log(result);
                 setNewProduct({

@@ -20,9 +20,7 @@ function CMS() {
 
     useEffect(() => {
         axios
-            .get(
-                "https://billiard-server-puce.vercel.app/api/user/login/current"
-            )
+            .get("http:localhost:8000/api/user/login/current")
             .then((result) => {
                 if (result.data === "Unauthorized User!") {
                     window.location.href = "/login";

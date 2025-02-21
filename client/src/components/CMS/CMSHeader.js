@@ -8,7 +8,7 @@ function CMSHeader() {
         // ارسال درخواست DELETE به سرور برای خروج اکانت
         axios
             .delete(
-                "https://billiard-server-puce.vercel.app/api/user/login/current"
+                "http:localhost:8000/api/user/login/current"
             )
             .then((response) => {
                 console.log(response);
