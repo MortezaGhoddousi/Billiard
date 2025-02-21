@@ -17,7 +17,10 @@ function CMSTable() {
     function handleSnookerSubmit(e) {
         e.preventDefault();
         axios
-            .put("http://localhost:8000/api/table/snooker", snooker)
+            .put(
+                "https://billiard-server-puce.vercel.app/api/table/snooker",
+                snooker
+            )
             .then((result) => {
                 console.log(result);
                 setSnooker({ id: "", price: "" });
@@ -30,7 +33,10 @@ function CMSTable() {
     function handleBilliardSubmit(e) {
         e.preventDefault();
         axios
-            .put("http://localhost:8000/api/table/pocket", billiard)
+            .put(
+                "https://billiard-server-puce.vercel.app/pi/table/pocket",
+                billiard
+            )
             .then((result) => {
                 console.log(result);
                 setBilliard({ id: "", price: "" });

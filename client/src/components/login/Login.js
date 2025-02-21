@@ -15,7 +15,7 @@ function Login() {
     const handleLogin = async (e) => {
         e.preventDefault(); // جلوگیری از ارسال پیش‌فرض فرم
         axios
-            .post("http://localhost:8000/api/user/login", {
+            .post("https://billiard-server-puce.vercel.app/api/user/login", {
                 username,
                 password,
             })

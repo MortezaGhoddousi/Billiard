@@ -34,7 +34,7 @@ function App() {
         const getTables = async () => {
             try {
                 const result = await axios.get(
-                    "http://localhost:8000/api/table"
+                    "https://billiard-server-puce.vercel.app/api/table"
                 );
                 result.data.forEach((element) => {
                     if (element.description === "snooker") {
