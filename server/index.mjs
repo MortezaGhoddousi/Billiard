@@ -11,7 +11,7 @@ import logRouter from "./apirouter/logRouter.mjs";
 import cors from "cors";
 import routerVerify from "./apiRouter/verifyRouter.mjs";
 import cookieParser from "cookie-parser";
-import 'dotenv/config;
+import "dotenv/config";
 
 var app = express();
 
