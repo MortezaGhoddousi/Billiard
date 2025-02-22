@@ -2,6 +2,7 @@ import "../css/Header.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { api } from "../API";
 
 function Header(props) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,9 +17,7 @@ function Header(props) {
     useEffect(() => {
         const checkCurrentUser = async () => {
             try {
-                const result = await axios.get(
-                    "http://localhost:8000/api/user/login/current"
-                );
+                const result = await axios.get(`${api}/api/user/login/current`);
                 if (result.data !== "Unauthorized User!") {
                     setIsLoggedIn(true);
                 } else {

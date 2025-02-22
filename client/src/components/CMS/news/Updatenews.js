@@ -1,6 +1,7 @@
 import "../../../css/CMSnews.css"; // فایل CSS برای استایل‌دهی
 import { useState } from "react";
 import axios from "axios";
+import { api } from "../../../API";
 
 function NewsCMS() {
     const [newsData, setNewsData] = useState({
@@ -17,10 +18,7 @@ function NewsCMS() {
     function handleSubmit(e) {
         e.preventDefault();
         axios
-            .put(
-                "http://localhost:8000/api/news/update/" + newsData.id,
-                newsData
-            )
+            .put(`${api}/api/news/update/` + newsData.id, newsData)
             .then((response) => {
                 console.log("News updated successfully:", response.data);
             })

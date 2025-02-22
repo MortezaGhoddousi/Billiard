@@ -1,14 +1,15 @@
-import '../../css/AddProduct.css';
-import { useState } from 'react';
-import axios from 'axios';
+import "../../css/AddProduct.css";
+import { useState } from "react";
+import axios from "axios";
+import { api } from "../../API";
 
 function UpdateProduct() {
     const [data, setData] = useState({
-        id: '',
-        name: '',
-        price: '',
-        number:'',
-        imageadd: ''
+        id: "",
+        name: "",
+        price: "",
+        number: "",
+        imageadd: "",
     });
 
     function handleChange(e) {
@@ -17,7 +18,8 @@ function UpdateProduct() {
 
     function handleSubmit(e) {
         e.preventDefault();
-        axios.put('http://localhost:8000/api/update/' +  data.id, data)
+        axios
+            .put(`${api}/api/update/` + data.id, data)
             .then((result) => {
                 console.log(result);
             })
@@ -27,23 +29,48 @@ function UpdateProduct() {
     }
 
     return (
-        <section className='edit'>
+        <section className="edit">
             <form onSubmit={handleSubmit}>
                 <h1>به‌روزرسانی محصول</h1>
                 <label>
-                    <input type="text" id='id' onChange={handleChange} placeholder="آیدی محصول برای به‌روزرسانی را وارد کنید" />
+                    <input
+                        type="text"
+                        id="id"
+                        onChange={handleChange}
+                        placeholder="آیدی محصول برای به‌روزرسانی را وارد کنید"
+                    />
                 </label>
                 <label>
-                    <input type="text" id='name' onChange={handleChange} placeholder="نام جدید محصول را وارد کنید" />
+                    <input
+                        type="text"
+                        id="name"
+                        onChange={handleChange}
+                        placeholder="نام جدید محصول را وارد کنید"
+                    />
                 </label>
                 <label>
-                    <input type="text" id='price' onChange={handleChange} placeholder="قیمت جدید محصول را وارد کنید" />
+                    <input
+                        type="text"
+                        id="price"
+                        onChange={handleChange}
+                        placeholder="قیمت جدید محصول را وارد کنید"
+                    />
                 </label>
                 <label>
-                    <input type="text" id="number" onChange={handleChange} placeholder="تعداد جدید محصول را وارد کنید" />
+                    <input
+                        type="text"
+                        id="number"
+                        onChange={handleChange}
+                        placeholder="تعداد جدید محصول را وارد کنید"
+                    />
                 </label>
                 <label>
-                    <input type="text" id='imageadd' onChange={handleChange} placeholder="آدرس تصویر جدید را وارد کنید" />
+                    <input
+                        type="text"
+                        id="imageadd"
+                        onChange={handleChange}
+                        placeholder="آدرس تصویر جدید را وارد کنید"
+                    />
                 </label>
                 <input type="submit" value="ثبت" />
             </form>

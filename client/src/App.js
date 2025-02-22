@@ -10,6 +10,7 @@ import axios from "axios";
 import { createContext } from "react";
 import Apptor from "./components/Tournament/Apptor";
 import TableShow from "./components/TablesShow";
+import { api } from "./API";
 
 export const nameContext = createContext();
 
@@ -33,9 +34,7 @@ function App() {
     useEffect(() => {
         const getTables = async () => {
             try {
-                const result = await axios.get(
-                    "http://localhost:8000/api/table"
-                );
+                const result = await axios.get(`${api}/api/table`);
                 result.data.forEach((element) => {
                     if (element.description === "snooker") {
                         setSnooker((prevSnooker) => [

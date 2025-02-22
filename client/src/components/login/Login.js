@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../Header";
 import "../../css/Login.css";
 import axios from "axios";
+import { api } from "../../API";
 
 function Login() {
     axios.defaults.withCredentials = true;
@@ -15,7 +16,7 @@ function Login() {
     const handleLogin = async (e) => {
         e.preventDefault(); // جلوگیری از ارسال پیش‌فرض فرم
         axios
-            .post("http://localhost:8000/api/user/login", {
+            .post(`${api}/api/user/login`, {
                 username,
                 password,
             })

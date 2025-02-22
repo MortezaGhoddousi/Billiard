@@ -1,6 +1,7 @@
 import "../../css/AddProduct.css";
 import { useState } from "react";
 import axios from "axios";
+import { api } from "../../API";
 
 function RemoveProduct() {
     const [id, setId] = useState("");
@@ -12,7 +13,7 @@ function RemoveProduct() {
     function handleSubmit(e) {
         e.preventDefault();
         axios
-            .delete("http://localhost:8000/api/delete/" + id)
+            .delete(`${api}/api/delete/` + id)
             .then((result) => {
                 console.log(result);
             })

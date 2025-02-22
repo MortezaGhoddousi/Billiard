@@ -2,6 +2,7 @@ import "../../css/AddProduct.css";
 import { useState } from "react";
 import axios from "axios";
 import uuid from "react-uuid";
+import { api } from "../../API";
 
 function AddProduct() {
     const [newProduct, setNewProduct] = useState({
@@ -20,7 +21,7 @@ function AddProduct() {
         e.preventDefault();
         setNewProduct({ ...newProduct, id: uuid() });
         axios
-            .post("http:localhost//:8000/api/add", newProduct)
+            .post(`${api}/api/add`, newProduct)
             .then((result) => {
                 console.log(result);
                 setNewProduct({

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/Timer.css";
 import axios from "axios";
+import { api } from "../API";
 
 const Timer = ({ price, table, description, startTime, id }) => {
     const [isActive, setIsActive] = useState(false);
@@ -72,7 +73,7 @@ const Timer = ({ price, table, description, startTime, id }) => {
             var time = t.toTimeString().split(" ")[0];
             var dateTime = `${date} ${time}`;
             const logData = { table, Cost: Cost + cost, dateTime, description };
-            axios.post("http://localhost:8000/api/log/table/", logData);
+            axios.post(`${api}api/log/table/`, logData);
             localStorage.removeItem(id);
         } else {
             overlayDiv.style.backgroundColor = "rgba(0, 0, 0, 0)";

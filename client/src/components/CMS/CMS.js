@@ -14,13 +14,14 @@ import "../../css/CMS.css";
 import TournamentCMS from "./tournoment/tournamentCMS";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { api } from "../../API";
 
 function CMS() {
     const [com, setCom] = useState(null);
 
     useEffect(() => {
         axios
-            .get("http://localhost:8000/api/user/login/current")
+            .get(`${api}/api/user/login/current`)
             .then((result) => {
                 if (result.data === "Unauthorized User!") {
                     window.location.href = "/login";

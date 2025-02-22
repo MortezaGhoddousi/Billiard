@@ -3,6 +3,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import axios from "axios";
 import { useEffect } from "react";
+import { api } from "../API";
 
 function TableShow() {
     axios.defaults.withCredentials = true;
@@ -13,7 +14,7 @@ function TableShow() {
 
     useEffect(() => {
         axios
-            .get("http://localhost:8000/api/user/login/current")
+            .get(`${api}/api/user/login/current`)
             .then((result) => {
                 if (result.data === "Unauthorized User!") {
                     window.location.href = "/";
