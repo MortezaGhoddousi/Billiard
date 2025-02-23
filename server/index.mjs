@@ -11,6 +11,7 @@ import logRouter from "./apirouter/logRouter.mjs";
 import cors from "cors";
 import routerVerify from "./apiRouter/verifyRouter.mjs";
 import cookieParser from "cookie-parser";
+
 import "dotenv/config";
 
 var app = express();
@@ -37,7 +38,7 @@ app.use("/api/customer", customerRouter);
 app.use("/api/payments", paymentsRouter);
 app.use("/api/reserve", reservationRouter);
 app.use("/api/table", tableRouter);
-app.use("/api/tour", TournamentsRouter);
+app.use("/api/tournament", TournamentsRouter);
 app.use("/api", sessionRouter);
 app.use("/api/cms", routerVerify);
 app.use("/api/log", logRouter);

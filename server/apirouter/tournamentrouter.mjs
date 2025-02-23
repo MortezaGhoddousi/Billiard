@@ -1,6 +1,7 @@
-
 import express from "express";
-import { addtour, deletetour, updatecomp, gettour } from "../db.mjs";
+import multer from "multer";
+import { addtour, deletetour, updatecomp, gettour, addPlayer } from "../db.mjs";
+
 const TournamentsRouter = express.Router();
 //
 TournamentsRouter.get("/:id", (req, res) => {
@@ -14,6 +15,71 @@ TournamentsRouter.get("/:id", (req, res) => {
         })
         .catch((err) => res.status(500).send({ ERROR: err }));
 });
+
+const storage = multer.memoryStorage(); // Store image in memory as buffer
+const upload = multer({ storage: storage });
+
+TournamentsRouter.post("/upload-image", upload.single("image"), (req, res) => {
+    if (!req.file)
+        return res
+            .status(400)
+            .json({ success: false, message: "No file uploaded" });
+
+    const imageBuffer = req.file.buffer;
+
+    addImage(imageBuffer)
+        .then(() => {
+            res.json({
+                success: true,
+                message: "Image uploaded successfully",
+            });
+        })
+        .catch(() => {
+            res.status(500).json({ success: false, message: "Database error" });
+        });
+});
+
+TournamentsRouter.post("/add-player", (req, res) => {
+    addPlayer(req.body)
+        .then(() => {
+            res.json({
+                success: true,
+                message: "Player added successfully",
+            });
+        })
+        .catch(() => {
+            res.status(500).json({ success: false, message: "Database error" });
+        });
+});
+
+TournamentsRouter.post(
+    "/register-player",
+    upload.single("photo"),
+    (req, res) => {
+        const { fullName, contactNumber } = req.body;
+        const photoBuffer = req.file ? req.file.buffer : null;
+
+        if (!fullName || !contactNumber) {
+            return res
+                .status(400)
+                .json({ success: false, message: "Missing fields" });
+        }
+
+        addPlayer(fullName, contactNumber, photoBuffer)
+            .then(() => {
+                res.json({
+                    success: true,
+                    message: "Player added successfully",
+                });
+            })
+            .catch(() => {
+                res.status(500).json({
+                    success: false,
+                    message: "Database error",
+                });
+            });
+    }
+);
 
 //
 TournamentsRouter.post("/", (req, res) => {

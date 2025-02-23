@@ -1,7 +1,7 @@
 import sqlite from "sqlite3";
 var db = new sqlite.Database("./biliards.db", function (err) {
     if (err) console.log(err);
-    console.log("Conneting to the database successfully!");
+    console.log("Connecting to the database successfully!");
 });
 
 // details all table user
@@ -167,6 +167,21 @@ function addtour(data) {
         var query =
             "INSERT INTO Tournaments (id, name, winner, prize) VALUES (?, ?, ?, ?)";
         db.run(query, [data.id, data.name, data.winner, data.prize], (err) => {
+            if (err) {
+                reject(err);
+            }
+            resolve(true);
+        });
+    });
+}
+
+// add player
+function addPlayer(fullName, contactNumber, photoBuffer) {
+    return new Promise((resolve, reject) => {
+        var query =
+            "INSERT INTO players (playerName, playerPhoneNumber, photo) VALUES (?, ?, ?)";
+
+        db.run(query, [fullName, contactNumber, photoBuffer], (err) => {
             if (err) {
                 reject(err);
             }
@@ -480,4 +495,5 @@ export {
     getAllCustomer,
     getAllReserv,
     addTableLog,
+    addPlayer,
 };
