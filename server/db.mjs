@@ -190,6 +190,21 @@ function addPlayer(fullName, contactNumber, photoBuffer) {
     });
 }
 
+// get all players
+function getAllPlayers() {
+    return new Promise((resolve, reject) => {
+        var query = "SELECT id, playerName, playerPhoneNumber FROM players";
+
+        db.all(query, (err, rows) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(rows || []);
+            }
+        });
+    });
+}
+
 function deletetour(id) {
     return new Promise((resolve, reject) => {
         var query = "DELETE FROM user WHERE id = ?";
@@ -467,6 +482,7 @@ function addTableLog(data) {
 }
 
 export {
+    getAllPlayers,
     verifyUser,
     getalltables,
     updatetable,

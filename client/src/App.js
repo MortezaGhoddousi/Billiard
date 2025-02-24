@@ -11,6 +11,7 @@ import { createContext } from "react";
 import TableShow from "./components/TablesShow";
 import { api } from "./API";
 import RegistrationForm from "./components/Tournament/RegistrationForm";
+import Tournament from "./components/Tournament/Tournament";
 
 export const nameContext = createContext();
 
@@ -84,6 +85,12 @@ function App() {
                             path="/tournament"
                             element={<RegistrationForm />}
                         />
+
+                        <Route
+                            path="/tournament/game"
+                            element={<Tournament />}
+                        />
+
                         <Route path="/news" element={<News />} />
                         <Route path="/tables" element={<TableShow />} />
                     </Routes>

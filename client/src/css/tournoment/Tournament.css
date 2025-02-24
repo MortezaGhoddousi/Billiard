@@ -1,130 +1,48 @@
-.bracket-container {
+#tournament {
+    display: flex;
+    flex-direction: row;
+}
+#tournament.round {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
-    background: #fff;
-    background-size: 400% 400%;
-    animation: animate-bg 6s ease infinite;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    width: 90%;
-    max-width: 100%;
-    margin: 20px auto;
-}
-
-.bracket-container h1 {
-    color: var(--highlight);
-    margin-bottom: 10px;
-    font-size: 24px;
-    text-align: center;
-}
-
-@keyframes animate-bg {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-}
-
-.round {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
     justify-content: center;
-    align-items: flex-start;
-}
-
-.match {
-    padding: 10px;
     width: 200px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: var(--dark);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* اینجا برای قرار دادن باکس‌ها در یک خط است */
-    align-items: center; /* اینجا برای تراز کردن باکس‌ها به صورت عمودی */
-    align-items: center;
-    gap: 10px;
-    position: relative;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    list-style: none;
+    padding: 0;
+}
+#tournament.round .spacer {
+    flex-grow: 1;
+}
+#tournament.round .spacer:first-child,
+#tournament.round .spacer:last-child {
+    flex-grow: 0.5;
 }
 
-.match img.profile {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 2px solid var(--highlight);
-    object-fit: cover;
+#tournament.round .game-spacer {
+    flex-grow: 1;
 }
 
-.match span {
-    font-size: 14px;
+#tournament li.game {
+    padding-left: 20px;
+}
+
+#tournament li.game.winner {
     font-weight: bold;
-    text-align: center;
-    color: var(--text);
+}
+#tournament li.game span {
+    float: right;
+    margin-right: 5px;
 }
 
-.match button {
-    background-color: var(--highlight);
-    color: var(--text);
-    border: none;
-    padding: 4px 8px;
-    border-radius: 5px;
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%;
+#tournament li.game-top {
+    border-bottom: 1px solid #aaa;
 }
 
-.match button:hover {
-    background-color: var(--secondary-highlight);
+#tournament li.game-spacer {
+    border-right: 1px solid #aaa;
+    min-height: 40px;
 }
 
-#result {
-    background-color: #333;
-    color: #fff;
-    border-radius: 7px;
-    width: 60px;
-    height: 30px;
-    text-align: center;
-    line-height: 30px;
-    font-size: 14px;
-    font-weight: bold;
-    display: inline-block; /* این خط برای جلوگیری از نمایش به صورت عمودی */
-}
-
-@media (max-width: 768px) {
-    .bracket-container {
-        width: 100%;
-        padding: 10px;
-    }
-
-    .round {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .match {
-        width: 100%;
-        max-width: 300px;
-    }
-
-    #result {
-        width: 50px;
-        height: 25px;
-        font-size: 10px;
-    }
-
-    button {
-        width: 70px;
-        font-size: 10px;
-    }
+#tournament li.game-bottom {
+    border-top: 1px solid #aaa;
 }
