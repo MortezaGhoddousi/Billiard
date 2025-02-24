@@ -1,37 +1,7 @@
 import Header from "../Header";
-import Footer from "../Footer";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import { api } from "../../API";
 import "../../css/tournoment/Tournament.css";
 
 function Tournament() {
-    // const [players, setPlayers] = useState([]); // ✅ Default state is an empty array
-    // const [loading, setLoading] = useState(true);
-    // const [error, setError] = useState(null);
-
-    // useEffect(() => {
-    //     const fetchPlayers = async () => {
-    //         try {
-    //             const response = await axios.get(
-    //                 `${api}/api/tournament/register-player` // ✅ Correct API route
-    //             );
-
-    //             if (response.data.success) {
-    //                 setPlayers(response.data.players);
-    //             } else {
-    //                 setPlayers([]);
-    //             }
-    //         } catch (err) {
-    //             console.error("❌ Error fetching players:", err);
-    //             setError("خطا در دریافت اطلاعات بازیکنان");
-    //         } finally {
-    //             setLoading(false);
-    //         }
-    //     };
-
-    //     fetchPlayers();
-    // }, []); // ✅ Runs only once on mount
     const players1 = [
         { name: "player1", score: 3 },
         { name: "player2", score: 2 },

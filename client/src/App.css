@@ -236,7 +236,7 @@ section.people div aside i {
 }
 #bracket {
     overflow: hidden;
-    background-color: rgba(225, 225, 225, 0.9);
+    background-color: #0c7e6e;
     padding-top: 20px;
     font-size: 12px;
     padding: 40px 0;
@@ -343,7 +343,7 @@ section.people div aside i {
 }
 .round-details {
     font-size: 13px;
-    color: #2c7399;
+    color: #fff;
     text-transform: uppercase;
     text-align: center;
     height: 40px;
@@ -433,7 +433,7 @@ section.people div aside i {
 .date {
     font-size: 10px;
     letter-spacing: 2px;
-    color: rgb(0 191 165);
+    color: #fff;
 }
 
 @media screen and (min-width: 981px) and (max-width: 1099px) {
